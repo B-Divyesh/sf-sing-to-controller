@@ -74,8 +74,33 @@ npm ci && npm test && npm run build
 
 ## Deployment and live checks
 
-Deployment and post-deploy identity, response-policy, and live browser evidence
-will be recorded here immediately after the repaired commit is uploaded.
+Repair commit `b3a1e6a` was pushed to `origin/main` and deployed with
+`/opt/fleet/lib/deploy-static.sh sing-to-controller dist` (Azure deployment ID
+`68c06a3e-d349-4b39-9d2f-475ecd5ed71c`). The custom domain returned HTTPS 200.
+
+- Factory `verify-url.sh` passed: title, `lang=en`, one H1, main landmark, image
+  alt text, and zero page/console errors.
+- Live 390×844 deterministic microphone run saved `✓ 220 Hz`, `✓ 260 Hz`, and
+  `✓ 1.8s steady`, reached `3 / 3 ready`, and displayed 260 Hz without aliasing.
+  The wrong action for the active low gate scored 0%.
+- Live mobile measurements: brand 145×44, keyboard-path link 350×44, sliders
+  300×44, footer brand 145×44, and legal links 58×44 / 47×44 CSS px; overflow
+  0 px. Live axe found 0 violations and the browser logged 0 errors.
+- Live microphone start made 0 requests and left 0 cookies, local-storage, and
+  session-storage entries. Cache `sing-switch-v2` was active and an offline
+  `/privacy` reload rendered “Your voice stays here.”
+- Response policy passed: HSTS, `nosniff`, strict-origin referrer policy,
+  `Permissions-Policy: microphone=(self)`, restrictive CSP, 30-second HTML
+  revalidation, and one-year immutable caching for hashed assets.
+- Live/local SHA-256 identity matched exactly: HTML
+  `2671553874a5d525e886e25d3f74950a022d6af361e8b8693cb3fa44dabf82fc`, JS
+  `adef20b86587c6f30775cef5f965950f86e3d909891b5d308eb0a6f848f4655b`, CSS
+  `9072618718f0e9d26c7c0ae5f419703bc5fe28a2e9ea493739847defc8f9b797`, and
+  service worker
+  `e9c8959f8c41d1ca385bf174a837066c40a3b42701c9c4dfd3a957e493f21170`.
+- Live mobile Lighthouse 12.8.2: 100 performance / 100 accessibility / 100
+  best practices / 100 SEO; FCP 1.1 s, LCP 1.3 s, TBT 70 ms, CLS 0, speed
+  index 1.1 s.
 
 ## Known gaps
 
