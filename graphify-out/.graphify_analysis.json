@@ -161,23 +161,23 @@
       "degree": 14
     },
     {
-      "id": "package_scripts",
-      "label": "scripts",
-      "degree": 7
-    },
-    {
       "id": "src_engine_makestate",
       "label": "makeState()",
       "degree": 7
     },
     {
-      "id": "src_engine_median",
-      "label": "median()",
-      "degree": 5
+      "id": "package_scripts",
+      "label": "scripts",
+      "degree": 7
     },
     {
       "id": "src_engine_microphonepitchsource",
       "label": "MicrophonePitchSource",
+      "degree": 5
+    },
+    {
+      "id": "src_engine_median",
+      "label": "median()",
       "degree": 5
     },
     {
