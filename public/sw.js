@@ -1,8 +1,15 @@
-const CACHE = 'sing-switch-v1';
+const CACHE = 'sing-switch-v2';
 const SHELL = ['/', '/assets/sound-landscape.webp', '/favicon.svg', '/manifest.webmanifest'];
 
 self.addEventListener('install', (event) => {
-  event.waitUntil(caches.open(CACHE).then((cache) => cache.addAll(SHELL)));
+  event.waitUntil((async () => {
+    const cache = await caches.open(CACHE);
+    const shellResponse = await fetch('/', { cache: 'reload' });
+    await cache.put('/', shellResponse.clone());
+    const html = await shellResponse.text();
+    const builtAssets = [...html.matchAll(/(?:src|href)="(\/assets\/[^"?]+)"/g)].map((match) => match[1]);
+    await cache.addAll([...new Set([...SHELL.slice(1), ...builtAssets])]);
+  })());
   self.skipWaiting();
 });
 
@@ -17,5 +24,10 @@ self.addEventListener('fetch', (event) => {
     const copy = response.clone();
     caches.open(CACHE).then((cache) => cache.put(event.request, copy));
     return response;
-  }).catch(() => caches.match(event.request).then((cached) => cached || caches.match('/'))));
+  }).catch(async () => {
+    const cached = await caches.match(event.request);
+    if (cached) return cached;
+    if (event.request.mode === 'navigate') return caches.match('/');
+    return new Response('Offline', { status: 503, headers: { 'Content-Type': 'text/plain' } });
+  }));
 });

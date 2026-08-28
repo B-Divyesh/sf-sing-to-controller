@@ -6,7 +6,10 @@ import {
   DEFAULT_CALIBRATION,
   DEFAULT_MAPPINGS,
   MicrophonePitchSource,
+  isCalibration,
+  isMappings,
   makeState,
+  matchesExpectedAction,
   median,
   type ActionId,
   type Calibration,
@@ -109,13 +112,13 @@ if (legalPage) {
             <div class="mapping-head" aria-hidden="true"><span>Gesture</span><span>Browser action</span><span>Live</span></div>
             <div id="mapping-rows"></div>
           </div>
-          <aside class="tuning-panel glass-panel" aria-labelledby="tuning-title">
+          <div class="tuning-panel glass-panel" aria-labelledby="tuning-title">
             <h3 id="tuning-title">Fine tune</h3>
             <label for="split-range">Pitch split <output id="split-output">255 Hz</output></label><input id="split-range" type="range" min="100" max="700" value="255">
             <label for="hold-range">Hold starts after <output id="hold-output">850 ms</output></label><input id="hold-range" type="range" min="400" max="2000" step="50" value="850">
             <label for="noise-range">Room noise gate <output id="noise-output">2%</output></label><input id="noise-range" type="range" min="5" max="100" value="18">
             <button class="text-button" type="button" id="reset-button">Reset setup</button>
-          </aside>
+          </div>
         </div>
         <div class="test-strip" aria-labelledby="test-title"><div><span class="step-tag">Quick check</span><h3 id="test-title">Press to preview your output</h3></div><div class="test-buttons"><button type="button" data-test="low">Low</button><button type="button" data-test="high">High</button><button type="button" data-test="held">Hold</button><button type="button" data-test="onset">Onset</button></div></div>
       </section>
@@ -127,7 +130,7 @@ if (legalPage) {
           <canvas id="game-canvas" width="640" height="360" aria-label="Glass ferry game. Guide the ferry through low, high, and hold gates using your mapped controls or keyboard."></canvas>
           <div class="game-footer"><p id="game-status" aria-live="polite">Ready at the first gate.</p><div><button class="button primary compact-button" id="game-toggle" type="button">Start route</button><button class="button secondary compact-button" id="game-reset" type="button">Reset</button></div></div>
         </div>
-        <div class="recognition"><span>Session recognition</span><strong id="accuracy">—</strong><p id="accuracy-detail">Start listening to measure detected vocal frames.</p></div>
+        <div class="recognition"><span>Route action accuracy</span><strong id="accuracy">—</strong><p id="accuracy-detail">Start the route and microphone to compare controls with each gate.</p></div>
       </section>
 
       <section class="connect-section" id="connect" aria-labelledby="connect-title">
@@ -147,8 +150,10 @@ if (legalPage) {
 if (!legalPage) initialiseStudio();
 
 function initialiseStudio(): void {
-  let calibration = loadJson<Calibration>('sing-switch-calibration', { ...DEFAULT_CALIBRATION });
-  let mappings = loadJson<Mapping[]>('sing-switch-mappings', DEFAULT_MAPPINGS.map((mapping) => ({ ...mapping })));
+  const storedCalibration = loadStoredJson('sing-switch-calibration', isCalibration);
+  let calibration: Calibration = storedCalibration ?? { ...DEFAULT_CALIBRATION };
+  let mappings: Mapping[] = loadStoredJson('sing-switch-mappings', isMappings)
+    ?? DEFAULT_MAPPINGS.map((mapping) => ({ ...mapping }));
   const source = new MicrophonePitchSource();
   let listening = false;
   let frame = 0;
@@ -157,9 +162,9 @@ function initialiseStudio(): void {
   let voicedSince: number | null = null;
   let wasVoiced = false;
   let latestResult: PitchResult = { frequency: null, clarity: 0, rms: 0 };
-  let samplesReady = new Set<Gesture>(localStorage.getItem('sing-switch-calibration') ? ['low', 'high', 'held'] : []);
-  let voicedFrames = 0;
-  let recognizedFrames = 0;
+  let samplesReady = new Set<Gesture>(storedCalibration ? ['low', 'high', 'held'] : []);
+  let evaluatedFrames = 0;
+  let matchedFrames = 0;
   const pitchHistory: Array<number | null> = [];
 
   const byId = <T extends HTMLElement>(id: string): T => {
@@ -281,11 +286,14 @@ function initialiseStudio(): void {
   byId<HTMLButtonElement>('game-reset').addEventListener('click', () => { game.reset(); gameToggle.textContent = 'Start route'; });
   byId<HTMLCanvasElement>('game-canvas').addEventListener('gamecomplete', () => { gameToggle.textContent = 'Play again'; });
   window.addEventListener('keydown', (event) => {
-    if (['ArrowUp', 'ArrowDown', 'Space'].includes(event.code) && !isTyping(event.target)) {
+    // Emitted integration events are intentionally synthetic. The game already
+    // receives vocal actions through setActions(), so only physical keyboard
+    // input should start or steer the keyboard fallback path.
+    if (event.isTrusted && ['ArrowUp', 'ArrowDown', 'Space'].includes(event.code) && !isTyping(event.target)) {
       event.preventDefault(); game.keyDown(event.code); if (!game.isRunning) { game.start(); gameToggle.textContent = 'Pause route'; }
     }
   });
-  window.addEventListener('keyup', (event) => game.keyUp(event.code));
+  window.addEventListener('keyup', (event) => { if (event.isTrusted) game.keyUp(event.code); });
 
   byId<HTMLButtonElement>('copy-state').addEventListener('click', async () => {
     try { await navigator.clipboard.writeText(stateJson.textContent || ''); byId('copy-status').textContent = 'Controller state copied.'; }
@@ -323,7 +331,11 @@ function initialiseStudio(): void {
     latestResult = source.read(calibration.noiseFloor);
     const output = makeState(latestResult, calibration, mappings, voicedSince, wasVoiced, now);
     voicedSince = output.voicedSince; wasVoiced = output.voiced;
-    if (latestResult.frequency !== null) { voicedFrames += 1; if (output.state.activeActions.length) recognizedFrames += 1; }
+    const expectedAction = game.expectedAction;
+    if (latestResult.frequency !== null && expectedAction) {
+      evaluatedFrames += 1;
+      if (matchesExpectedAction(output.state.activeActions, expectedAction)) matchedFrames += 1;
+    }
     pitchHistory.push(latestResult.frequency); if (pitchHistory.length > 90) pitchHistory.shift();
     emitState(output.state); drawPitch(); updateAccuracy();
     frame = requestAnimationFrame(analyse);
@@ -445,9 +457,11 @@ function initialiseStudio(): void {
   }
 
   function updateAccuracy(): void {
-    const accuracy = voicedFrames ? Math.round((recognizedFrames / voicedFrames) * 100) : 0;
-    byId('accuracy').textContent = voicedFrames ? `${accuracy}%` : '—';
-    byId('accuracy-detail').textContent = voicedFrames ? `${recognizedFrames} of ${voicedFrames} voiced frames matched an action.` : 'Start listening to measure detected vocal frames.';
+    const accuracy = evaluatedFrames ? Math.round((matchedFrames / evaluatedFrames) * 100) : 0;
+    byId('accuracy').textContent = evaluatedFrames ? `${accuracy}%` : '—';
+    byId('accuracy-detail').textContent = evaluatedFrames
+      ? `${matchedFrames} of ${evaluatedFrames} voiced route frames matched the action requested by the gate.`
+      : 'Start the route and microphone to compare controls with each gate.';
   }
 
   function toggleSocket(): void {
@@ -465,8 +479,17 @@ function initialiseStudio(): void {
   }
 }
 
-function loadJson<T>(key: string, fallback: T): T {
-  try { const raw = localStorage.getItem(key); return raw ? JSON.parse(raw) as T : fallback; } catch { return fallback; }
+function loadStoredJson<T>(key: string, validate: (value: unknown) => value is T): T | null {
+  try {
+    const raw = localStorage.getItem(key);
+    if (!raw) return null;
+    const value: unknown = JSON.parse(raw);
+    if (validate(value)) return value;
+  } catch {
+    // Damaged local settings are discarded below and replaced with defaults.
+  }
+  localStorage.removeItem(key);
+  return null;
 }
 
 function keyLabel(code: string): string {

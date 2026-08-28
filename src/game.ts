@@ -69,6 +69,14 @@ export class FerryGame {
   keyDown(code: string): void { this.keys.add(code); }
   keyUp(code: string): void { this.keys.delete(code); }
   get isRunning(): boolean { return this.running; }
+  get expectedAction(): ActionId | null {
+    if (!this.running) return null;
+    const target = this.gates[this.gateIndex]?.label;
+    if (target === 'LOW') return 'MOVE_DOWN';
+    if (target === 'HIGH') return 'MOVE_UP';
+    if (target === 'HOLD') return 'BOOST';
+    return null;
+  }
 
   private loop = (time: number): void => {
     if (!this.running) return;

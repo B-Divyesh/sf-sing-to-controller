@@ -55,6 +55,9 @@ export const ACTION_KEYS: Record<ActionId, string> = {
   BUTTON_B: 'KeyB',
 };
 
+const GESTURES = new Set<Gesture>(['silence', 'onset', 'low', 'high', 'held']);
+const ACTIONS = new Set<ActionId>(['NONE', 'MOVE_UP', 'MOVE_DOWN', 'BOOST', 'BUTTON_A', 'BUTTON_B']);
+
 /** Autocorrelation pitch detector tuned for monophonic voice (70–1000 Hz). */
 export function detectPitch(buffer: Float32Array, sampleRate: number, noiseFloor = 0.018): PitchResult {
   let squareSum = 0;
@@ -64,11 +67,13 @@ export function detectPitch(buffer: Float32Array, sampleRate: number, noiseFloor
 
   const minLag = Math.max(2, Math.floor(sampleRate / 1000));
   const maxLag = Math.min(buffer.length - 2, Math.ceil(sampleRate / 70));
+  const comparisonMinLag = Math.max(1, minLag - 1);
+  const comparisonMaxLag = Math.min(buffer.length - 1, maxLag + 1);
   let bestLag = -1;
   let bestCorrelation = 0;
-  const correlations = new Float32Array(maxLag + 1);
+  const correlations = new Float32Array(comparisonMaxLag + 1);
 
-  for (let lag = minLag; lag <= maxLag; lag += 1) {
+  for (let lag = comparisonMinLag; lag <= comparisonMaxLag; lag += 1) {
     let correlation = 0;
     let normA = 0;
     let normB = 0;
@@ -81,18 +86,67 @@ export function detectPitch(buffer: Float32Array, sampleRate: number, noiseFloor
     }
     correlation /= Math.sqrt(normA * normB) || 1;
     correlations[lag] = correlation;
-    if (correlation > bestCorrelation) {
-      bestCorrelation = correlation;
-      bestLag = lag;
-    }
+    if (lag >= minLag && lag <= maxLag && correlation > bestCorrelation) bestCorrelation = correlation;
   }
 
-  if (bestLag < 0 || bestCorrelation < 0.72) return { frequency: null, clarity: bestCorrelation, rms };
+  if (bestCorrelation < 0.72) return { frequency: null, clarity: bestCorrelation, rms };
+
+  // A periodic signal has strong correlation at the fundamental period and at
+  // each integer multiple. Picking the absolute maximum lets tiny rounding
+  // differences select a later multiple and report a subharmonic. The first
+  // local peak close to the global peak is the fundamental period.
+  const peakThreshold = Math.max(0.72, bestCorrelation * 0.9);
+  for (let lag = minLag; lag <= maxLag; lag += 1) {
+    if (
+      correlations[lag] >= peakThreshold
+      && correlations[lag] >= correlations[lag - 1]
+      && correlations[lag] > correlations[lag + 1]
+    ) {
+      bestLag = lag;
+      break;
+    }
+  }
+  if (bestLag < 0) return { frequency: null, clarity: bestCorrelation, rms };
+
+  bestCorrelation = correlations[bestLag];
   const prev = correlations[bestLag - 1] || bestCorrelation;
   const next = correlations[bestLag + 1] || bestCorrelation;
   const shift = (next - prev) / (2 * (2 * bestCorrelation - prev - next) || 1);
   const frequency = sampleRate / (bestLag + Math.max(-1, Math.min(1, shift)));
   return { frequency, clarity: bestCorrelation, rms };
+}
+
+export function isCalibration(value: unknown): value is Calibration {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return false;
+  const candidate = value as Record<string, unknown>;
+  const lowHz = candidate.lowHz;
+  const highHz = candidate.highHz;
+  const holdMs = candidate.holdMs;
+  const noiseFloor = candidate.noiseFloor;
+  return typeof lowHz === 'number' && Number.isFinite(lowHz) && lowHz >= 70 && lowHz <= 1000
+    && typeof highHz === 'number' && Number.isFinite(highHz) && highHz >= 70 && highHz <= 1000
+    && highHz >= lowHz * 1.15
+    && typeof holdMs === 'number' && Number.isFinite(holdMs) && holdMs >= 400 && holdMs <= 2000
+    && typeof noiseFloor === 'number' && Number.isFinite(noiseFloor) && noiseFloor >= 0.005 && noiseFloor <= 0.1;
+}
+
+export function isMappings(value: unknown): value is Mapping[] {
+  if (!Array.isArray(value) || value.length !== GESTURES.size) return false;
+  const gestures = new Set<Gesture>();
+  for (const item of value) {
+    if (!item || typeof item !== 'object' || Array.isArray(item)) return false;
+    const candidate = item as Record<string, unknown>;
+    if (!GESTURES.has(candidate.gesture as Gesture) || !ACTIONS.has(candidate.action as ActionId)) return false;
+    const gesture = candidate.gesture as Gesture;
+    const action = candidate.action as ActionId;
+    if (gestures.has(gesture) || candidate.key !== ACTION_KEYS[action]) return false;
+    gestures.add(gesture);
+  }
+  return gestures.size === GESTURES.size;
+}
+
+export function matchesExpectedAction(activeActions: ActionId[], expectedAction: ActionId): boolean {
+  return activeActions.includes(expectedAction);
 }
 
 export function median(values: number[]): number {
