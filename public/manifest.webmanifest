@@ -1,0 +1,10 @@
+{
+  "name": "Sing Switch",
+  "short_name": "Sing Switch",
+  "description": "Local vocal gesture to browser-control mapper",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#07110f",
+  "theme_color": "#07110f",
+  "icons": [{ "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }]
+}
