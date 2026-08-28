@@ -1,0 +1,12 @@
+{
+  "slug": "sing-to-controller",
+  "title": "Sing Switch",
+  "territory": "games-creative",
+  "user": "Experimental game makers, music teachers, and accessible-play designers who want to map simple vocal pitch and sustained-note gestures to browser game controls without training a model or installing audio middleware.",
+  "smallest_useful_product": "An in-browser calibrator that maps pitch bands, onset, sustained sound, and silence to a virtual controller state and exports a compact JSON mapping or WebSocket stream.",
+  "success_measure": "A new user maps three vocal gestures to three actions and completes a supplied accessibility mini-game with at least 90% action-recognition accuracy after one-minute calibration.",
+  "artifact_class": "static-web",
+  "monetization": "free",
+  "constraints": "Process microphone input locally; do not retain recordings; include keyboard alternatives and disclose that pitch detection can fail in noisy environments.",
+  "state": "BUILT"
+}
