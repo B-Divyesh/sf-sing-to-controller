@@ -4,24 +4,12 @@
   "graph": {},
   "nodes": [
     {
-      "id": "src_engine_actionid",
-      "label": "ActionId",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "community": 1,
-      "file_type": "code",
-      "norm_label": "actionid",
-      "source_file": "src/engine.ts",
-      "source_location": "L2"
-    },
-    {
       "id": "src_engine_calibration",
       "label": "Calibration",
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
-      "community": 1,
+      "community": 0,
       "file_type": "code",
       "norm_label": "calibration",
       "source_file": "src/engine.ts",
@@ -33,7 +21,7 @@
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
-      "community": 1,
+      "community": 0,
       "file_type": "code",
       "norm_label": "controllerstate",
       "source_file": "src/engine.ts",
@@ -45,7 +33,7 @@
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
-      "community": 1,
+      "community": 0,
       "file_type": "code",
       "norm_label": "gesture",
       "source_file": "src/engine.ts",
@@ -57,7 +45,7 @@
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
-      "community": 1,
+      "community": 0,
       "file_type": "code",
       "norm_label": "mapping",
       "source_file": "src/engine.ts",
@@ -69,11 +57,11 @@
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
-      "community": 1,
+      "community": 0,
       "file_type": "code",
       "norm_label": "microphonepitchsource",
       "source_file": "src/engine.ts",
-      "source_location": "L147"
+      "source_location": "L201"
     },
     {
       "id": "src_engine_pitchresult",
@@ -81,23 +69,23 @@
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
-      "community": 1,
+      "community": 0,
       "file_type": "code",
       "norm_label": "pitchresult",
       "source_file": "src/engine.ts",
       "source_location": "L17"
     },
     {
-      "id": "src_game_gate",
-      "label": "Gate",
+      "id": "src_engine_actionid",
+      "label": "ActionId",
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
-      "community": 1,
+      "community": 3,
       "file_type": "code",
-      "norm_label": "gate",
-      "source_file": "src/game.ts",
-      "source_location": "L3"
+      "norm_label": "actionid",
+      "source_file": "src/engine.ts",
+      "source_location": "L2"
     },
     {
       "id": "src_game_ferrygame",
@@ -105,326 +93,174 @@
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
-      "community": 5,
+      "community": 3,
       "file_type": "code",
       "norm_label": "ferrygame",
       "source_file": "src/game.ts",
       "source_location": "L5"
     },
     {
+      "id": "src_game_gate",
+      "label": "Gate",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 3,
+      "file_type": "code",
+      "norm_label": "gate",
+      "source_file": "src/game.ts",
+      "source_location": "L3"
+    },
+    {
+      "id": "tests_app_spec_testaudiocontext",
+      "label": "TestAudioContext",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 6,
+      "file_type": "code",
+      "norm_label": "testaudiocontext",
+      "source_file": "tests/app.spec.ts",
+      "source_location": "L111"
+    },
+    {
       "id": "src_engine_detectpitch",
       "label": "detectPitch()",
       "_callable": true,
       "_origin": "ast",
-      "community": 1,
+      "community": 0,
       "file_type": "code",
       "norm_label": "detectpitch()",
       "source_file": "src/engine.ts",
-      "source_location": "L59"
+      "source_location": "L62"
     },
     {
-      "id": "src_engine_median",
-      "label": "median()",
+      "id": "src_engine_iscalibration",
+      "label": "isCalibration()",
       "_callable": true,
       "_origin": "ast",
-      "community": 1,
+      "community": 0,
       "file_type": "code",
-      "norm_label": "median()",
+      "norm_label": "iscalibration()",
       "source_file": "src/engine.ts",
-      "source_location": "L98"
+      "source_location": "L119"
+    },
+    {
+      "id": "src_engine_ismappings",
+      "label": "isMappings()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 0,
+      "file_type": "code",
+      "norm_label": "ismappings()",
+      "source_file": "src/engine.ts",
+      "source_location": "L133"
     },
     {
       "id": "src_engine_microphonepitchsource_read",
       "label": ".read()",
       "_callable": true,
       "_origin": "ast",
-      "community": 1,
+      "community": 0,
       "file_type": "code",
       "norm_label": ".read()",
       "source_file": "src/engine.ts",
-      "source_location": "L167"
+      "source_location": "L221"
     },
     {
       "id": "src_engine_microphonepitchsource_start",
       "label": ".start()",
       "_callable": true,
       "_origin": "ast",
-      "community": 1,
+      "community": 0,
       "file_type": "code",
       "norm_label": ".start()",
       "source_file": "src/engine.ts",
-      "source_location": "L153"
+      "source_location": "L207"
     },
     {
       "id": "src_engine_microphonepitchsource_stop",
       "label": ".stop()",
       "_callable": true,
       "_origin": "ast",
-      "community": 1,
+      "community": 0,
       "file_type": "code",
       "norm_label": ".stop()",
       "source_file": "src/engine.ts",
-      "source_location": "L173"
+      "source_location": "L227"
     },
     {
       "id": "src_engine_test_sine",
       "label": "sine()",
       "_callable": true,
       "_origin": "ast",
-      "community": 1,
+      "community": 0,
       "file_type": "code",
       "norm_label": "sine()",
       "source_file": "src/engine.test.ts",
-      "source_location": "L4"
+      "source_location": "L13"
     },
     {
       "id": "src_main_footer",
       "label": "footer()",
       "_callable": true,
       "_origin": "ast",
-      "community": 1,
+      "community": 0,
       "file_type": "code",
       "norm_label": "footer()",
       "source_file": "src/main.ts",
-      "source_location": "L25"
-    },
-    {
-      "id": "src_engine_makestate",
-      "label": "makeState()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 2,
-      "file_type": "code",
-      "norm_label": "makestate()",
-      "source_file": "src/engine.ts",
-      "source_location": "L105"
-    },
-    {
-      "id": "src_game_ferrygame_keydown",
-      "label": ".keyDown()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 2,
-      "file_type": "code",
-      "norm_label": ".keydown()",
-      "source_file": "src/game.ts",
-      "source_location": "L69"
-    },
-    {
-      "id": "src_game_ferrygame_keyup",
-      "label": ".keyUp()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 2,
-      "file_type": "code",
-      "norm_label": ".keyup()",
-      "source_file": "src/game.ts",
-      "source_location": "L70"
-    },
-    {
-      "id": "src_main_initialisestudio",
-      "label": "initialiseStudio()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 2,
-      "file_type": "code",
-      "norm_label": "initialisestudio()",
-      "source_file": "src/main.ts",
-      "source_location": "L149"
-    },
-    {
-      "id": "src_main_initialisestudio_analyse",
-      "label": "analyse()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 2,
-      "file_type": "code",
-      "norm_label": "analyse()",
-      "source_file": "src/main.ts",
-      "source_location": "L321"
-    },
-    {
-      "id": "src_main_initialisestudio_drawpitch",
-      "label": "drawPitch()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 2,
-      "file_type": "code",
-      "norm_label": "drawpitch()",
-      "source_file": "src/main.ts",
-      "source_location": "L431"
-    },
-    {
-      "id": "src_main_initialisestudio_emitstate",
-      "label": "emitState()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 2,
-      "file_type": "code",
-      "norm_label": "emitstate()",
-      "source_file": "src/main.ts",
-      "source_location": "L407"
-    },
-    {
-      "id": "src_main_initialisestudio_previewgesture",
-      "label": "previewGesture()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 2,
-      "file_type": "code",
-      "norm_label": "previewgesture()",
-      "source_file": "src/main.ts",
-      "source_location": "L399"
-    },
-    {
-      "id": "src_main_initialisestudio_rendermappings",
-      "label": "renderMappings()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 2,
-      "file_type": "code",
-      "norm_label": "rendermappings()",
-      "source_file": "src/main.ts",
-      "source_location": "L376"
-    },
-    {
-      "id": "src_main_initialisestudio_samplegesture",
-      "label": "sampleGesture()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 2,
-      "file_type": "code",
-      "norm_label": "samplegesture()",
-      "source_file": "src/main.ts",
-      "source_location": "L332"
-    },
-    {
-      "id": "src_main_initialisestudio_savesettings",
-      "label": "saveSettings()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 2,
-      "file_type": "code",
-      "norm_label": "savesettings()",
-      "source_file": "src/main.ts",
-      "source_location": "L394"
-    },
-    {
-      "id": "src_main_initialisestudio_stoplistening",
-      "label": "stopListening()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 2,
-      "file_type": "code",
-      "norm_label": "stoplistening()",
-      "source_file": "src/main.ts",
-      "source_location": "L309"
-    },
-    {
-      "id": "src_main_initialisestudio_togglesocket",
-      "label": "toggleSocket()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 2,
-      "file_type": "code",
-      "norm_label": "togglesocket()",
-      "source_file": "src/main.ts",
-      "source_location": "L453"
-    },
-    {
-      "id": "src_main_initialisestudio_updateaccuracy",
-      "label": "updateAccuracy()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 2,
-      "file_type": "code",
-      "norm_label": "updateaccuracy()",
-      "source_file": "src/main.ts",
-      "source_location": "L447"
-    },
-    {
-      "id": "src_main_initialisestudio_updatesample",
-      "label": "updateSample()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 2,
-      "file_type": "code",
-      "norm_label": "updatesample()",
-      "source_file": "src/main.ts",
-      "source_location": "L371"
-    },
-    {
-      "id": "src_main_initialisestudio_updatetuningcontrols",
-      "label": "updateTuningControls()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 2,
-      "file_type": "code",
-      "norm_label": "updatetuningcontrols()",
-      "source_file": "src/main.ts",
-      "source_location": "L387"
+      "source_location": "L28"
     },
     {
       "id": "src_main_istyping",
       "label": "isTyping()",
       "_callable": true,
       "_origin": "ast",
-      "community": 2,
+      "community": 0,
       "file_type": "code",
       "norm_label": "istyping()",
       "source_file": "src/main.ts",
+      "source_location": "L505"
+    },
+    {
+      "id": "src_main_loadstoredjson",
+      "label": "loadStoredJson()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 0,
+      "file_type": "code",
+      "norm_label": "loadstoredjson()",
+      "source_file": "src/main.ts",
       "source_location": "L482"
-    },
-    {
-      "id": "src_main_keylabel",
-      "label": "keyLabel()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 2,
-      "file_type": "code",
-      "norm_label": "keylabel()",
-      "source_file": "src/main.ts",
-      "source_location": "L472"
-    },
-    {
-      "id": "src_main_loadjson",
-      "label": "loadJson()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 2,
-      "file_type": "code",
-      "norm_label": "loadjson()",
-      "source_file": "src/main.ts",
-      "source_location": "L468"
     },
     {
       "id": "src_main_microphoneerror",
       "label": "microphoneError()",
       "_callable": true,
       "_origin": "ast",
-      "community": 2,
+      "community": 0,
       "file_type": "code",
       "norm_label": "microphoneerror()",
       "source_file": "src/main.ts",
-      "source_location": "L476"
+      "source_location": "L499"
     },
     {
       "id": "src_game_ferrygame_checkgate",
       "label": ".checkGate()",
       "_callable": true,
       "_origin": "ast",
-      "community": 5,
+      "community": 3,
       "file_type": "code",
       "norm_label": ".checkgate()",
       "source_file": "src/game.ts",
-      "source_location": "L89"
+      "source_location": "L97"
     },
     {
       "id": "src_game_ferrygame_constructor",
       "label": ".constructor()",
       "_callable": true,
       "_origin": "ast",
-      "community": 5,
+      "community": 3,
       "file_type": "code",
       "norm_label": ".constructor()",
       "source_file": "src/game.ts",
@@ -435,40 +271,73 @@
       "label": ".draw()",
       "_callable": true,
       "_origin": "ast",
-      "community": 5,
+      "community": 3,
       "file_type": "code",
       "norm_label": ".draw()",
       "source_file": "src/game.ts",
-      "source_location": "L119"
+      "source_location": "L127"
+    },
+    {
+      "id": "src_game_ferrygame_expectedaction",
+      "label": ".expectedAction()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 3,
+      "file_type": "code",
+      "norm_label": ".expectedaction()",
+      "source_file": "src/game.ts",
+      "source_location": "L72"
     },
     {
       "id": "src_game_ferrygame_isrunning",
       "label": ".isRunning()",
       "_callable": true,
       "_origin": "ast",
-      "community": 5,
+      "community": 3,
       "file_type": "code",
       "norm_label": ".isrunning()",
       "source_file": "src/game.ts",
       "source_location": "L71"
     },
     {
+      "id": "src_game_ferrygame_keydown",
+      "label": ".keyDown()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 3,
+      "file_type": "code",
+      "norm_label": ".keydown()",
+      "source_file": "src/game.ts",
+      "source_location": "L69"
+    },
+    {
+      "id": "src_game_ferrygame_keyup",
+      "label": ".keyUp()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 3,
+      "file_type": "code",
+      "norm_label": ".keyup()",
+      "source_file": "src/game.ts",
+      "source_location": "L70"
+    },
+    {
       "id": "src_game_ferrygame_loop",
       "label": ".loop()",
       "_callable": true,
       "_origin": "ast",
-      "community": 5,
+      "community": 3,
       "file_type": "code",
       "norm_label": ".loop()",
       "source_file": "src/game.ts",
-      "source_location": "L73"
+      "source_location": "L81"
     },
     {
       "id": "src_game_ferrygame_pause",
       "label": ".pause()",
       "_callable": true,
       "_origin": "ast",
-      "community": 5,
+      "community": 3,
       "file_type": "code",
       "norm_label": ".pause()",
       "source_file": "src/game.ts",
@@ -479,7 +348,7 @@
       "label": ".reset()",
       "_callable": true,
       "_origin": "ast",
-      "community": 5,
+      "community": 3,
       "file_type": "code",
       "norm_label": ".reset()",
       "source_file": "src/game.ts",
@@ -490,18 +359,18 @@
       "label": ".resize()",
       "_callable": true,
       "_origin": "ast",
-      "community": 5,
+      "community": 3,
       "file_type": "code",
       "norm_label": ".resize()",
       "source_file": "src/game.ts",
-      "source_location": "L112"
+      "source_location": "L120"
     },
     {
       "id": "src_game_ferrygame_setactions",
       "label": ".setActions()",
       "_callable": true,
       "_origin": "ast",
-      "community": 5,
+      "community": 3,
       "file_type": "code",
       "norm_label": ".setactions()",
       "source_file": "src/game.ts",
@@ -512,247 +381,248 @@
       "label": ".start()",
       "_callable": true,
       "_origin": "ast",
-      "community": 5,
+      "community": 3,
       "file_type": "code",
       "norm_label": ".start()",
       "source_file": "src/game.ts",
       "source_location": "L36"
     },
     {
-      "id": "tsconfig",
-      "label": "tsconfig.json",
+      "id": "src_engine_makestate",
+      "label": "makeState()",
+      "_callable": true,
       "_origin": "ast",
-      "community": 0,
+      "community": 4,
       "file_type": "code",
-      "norm_label": "tsconfig.json",
-      "source_file": "tsconfig.json",
-      "source_location": "L1"
+      "norm_label": "makestate()",
+      "source_file": "src/engine.ts",
+      "source_location": "L159"
     },
     {
-      "id": "tsconfig_compileroptions",
-      "label": "compilerOptions",
+      "id": "src_engine_matchesexpectedaction",
+      "label": "matchesExpectedAction()",
+      "_callable": true,
       "_origin": "ast",
-      "community": 0,
+      "community": 4,
       "file_type": "code",
-      "norm_label": "compileroptions",
-      "source_file": "tsconfig.json",
-      "source_location": "L2"
+      "norm_label": "matchesexpectedaction()",
+      "source_file": "src/engine.ts",
+      "source_location": "L148"
     },
     {
-      "id": "tsconfig_compileroptions_allowimportingtsextensions",
-      "label": "allowImportingTsExtensions",
+      "id": "src_engine_median",
+      "label": "median()",
+      "_callable": true,
       "_origin": "ast",
-      "community": 0,
+      "community": 4,
       "file_type": "code",
-      "norm_label": "allowimportingtsextensions",
-      "source_file": "tsconfig.json",
-      "source_location": "L9"
+      "norm_label": "median()",
+      "source_file": "src/engine.ts",
+      "source_location": "L152"
     },
     {
-      "id": "tsconfig_compileroptions_isolatedmodules",
-      "label": "isolatedModules",
+      "id": "src_main_initialisestudio",
+      "label": "initialiseStudio()",
+      "_callable": true,
       "_origin": "ast",
-      "community": 0,
+      "community": 4,
       "file_type": "code",
-      "norm_label": "isolatedmodules",
-      "source_file": "tsconfig.json",
-      "source_location": "L10"
+      "norm_label": "initialisestudio()",
+      "source_file": "src/main.ts",
+      "source_location": "L152"
     },
     {
-      "id": "tsconfig_compileroptions_lib",
-      "label": "lib",
+      "id": "src_main_initialisestudio_analyse",
+      "label": "analyse()",
+      "_callable": true,
       "_origin": "ast",
-      "community": 0,
+      "community": 4,
       "file_type": "code",
-      "norm_label": "lib",
-      "source_file": "tsconfig.json",
-      "source_location": "L6"
+      "norm_label": "analyse()",
+      "source_file": "src/main.ts",
+      "source_location": "L329"
     },
     {
-      "id": "tsconfig_compileroptions_module",
-      "label": "module",
+      "id": "src_main_initialisestudio_drawpitch",
+      "label": "drawPitch()",
+      "_callable": true,
       "_origin": "ast",
-      "community": 0,
+      "community": 4,
       "file_type": "code",
-      "norm_label": "module",
-      "source_file": "tsconfig.json",
-      "source_location": "L5"
+      "norm_label": "drawpitch()",
+      "source_file": "src/main.ts",
+      "source_location": "L443"
     },
     {
-      "id": "tsconfig_compileroptions_moduledetection",
-      "label": "moduleDetection",
+      "id": "src_main_initialisestudio_emitstate",
+      "label": "emitState()",
+      "_callable": true,
       "_origin": "ast",
-      "community": 0,
+      "community": 4,
       "file_type": "code",
-      "norm_label": "moduledetection",
-      "source_file": "tsconfig.json",
-      "source_location": "L11"
+      "norm_label": "emitstate()",
+      "source_file": "src/main.ts",
+      "source_location": "L419"
     },
     {
-      "id": "tsconfig_compileroptions_moduleresolution",
-      "label": "moduleResolution",
+      "id": "src_main_initialisestudio_previewgesture",
+      "label": "previewGesture()",
+      "_callable": true,
       "_origin": "ast",
-      "community": 0,
+      "community": 4,
       "file_type": "code",
-      "norm_label": "moduleresolution",
-      "source_file": "tsconfig.json",
-      "source_location": "L8"
+      "norm_label": "previewgesture()",
+      "source_file": "src/main.ts",
+      "source_location": "L411"
     },
     {
-      "id": "tsconfig_compileroptions_noemit",
-      "label": "noEmit",
+      "id": "src_main_initialisestudio_rendermappings",
+      "label": "renderMappings()",
+      "_callable": true,
       "_origin": "ast",
-      "community": 0,
+      "community": 4,
       "file_type": "code",
-      "norm_label": "noemit",
-      "source_file": "tsconfig.json",
-      "source_location": "L13"
+      "norm_label": "rendermappings()",
+      "source_file": "src/main.ts",
+      "source_location": "L388"
     },
     {
-      "id": "tsconfig_compileroptions_nofallthroughcasesinswitch",
-      "label": "noFallthroughCasesInSwitch",
+      "id": "src_main_initialisestudio_samplegesture",
+      "label": "sampleGesture()",
+      "_callable": true,
       "_origin": "ast",
-      "community": 0,
+      "community": 4,
       "file_type": "code",
-      "norm_label": "nofallthroughcasesinswitch",
-      "source_file": "tsconfig.json",
-      "source_location": "L17"
+      "norm_label": "samplegesture()",
+      "source_file": "src/main.ts",
+      "source_location": "L344"
     },
     {
-      "id": "tsconfig_compileroptions_nounusedlocals",
-      "label": "noUnusedLocals",
+      "id": "src_main_initialisestudio_savesettings",
+      "label": "saveSettings()",
+      "_callable": true,
       "_origin": "ast",
-      "community": 0,
+      "community": 4,
       "file_type": "code",
-      "norm_label": "nounusedlocals",
-      "source_file": "tsconfig.json",
-      "source_location": "L15"
+      "norm_label": "savesettings()",
+      "source_file": "src/main.ts",
+      "source_location": "L406"
     },
     {
-      "id": "tsconfig_compileroptions_nounusedparameters",
-      "label": "noUnusedParameters",
+      "id": "src_main_initialisestudio_stoplistening",
+      "label": "stopListening()",
+      "_callable": true,
       "_origin": "ast",
-      "community": 0,
+      "community": 4,
       "file_type": "code",
-      "norm_label": "nounusedparameters",
-      "source_file": "tsconfig.json",
-      "source_location": "L16"
+      "norm_label": "stoplistening()",
+      "source_file": "src/main.ts",
+      "source_location": "L317"
     },
     {
-      "id": "tsconfig_compileroptions_skiplibcheck",
-      "label": "skipLibCheck",
+      "id": "src_main_initialisestudio_togglesocket",
+      "label": "toggleSocket()",
+      "_callable": true,
       "_origin": "ast",
-      "community": 0,
+      "community": 4,
       "file_type": "code",
-      "norm_label": "skiplibcheck",
-      "source_file": "tsconfig.json",
-      "source_location": "L7"
+      "norm_label": "togglesocket()",
+      "source_file": "src/main.ts",
+      "source_location": "L467"
     },
     {
-      "id": "tsconfig_compileroptions_strict",
-      "label": "strict",
+      "id": "src_main_initialisestudio_updateaccuracy",
+      "label": "updateAccuracy()",
+      "_callable": true,
       "_origin": "ast",
-      "community": 0,
+      "community": 4,
       "file_type": "code",
-      "norm_label": "strict",
-      "source_file": "tsconfig.json",
-      "source_location": "L14"
+      "norm_label": "updateaccuracy()",
+      "source_file": "src/main.ts",
+      "source_location": "L459"
     },
     {
-      "id": "tsconfig_compileroptions_target",
-      "label": "target",
+      "id": "src_main_initialisestudio_updatesample",
+      "label": "updateSample()",
+      "_callable": true,
       "_origin": "ast",
-      "community": 0,
+      "community": 4,
       "file_type": "code",
-      "norm_label": "target",
-      "source_file": "tsconfig.json",
-      "source_location": "L3"
+      "norm_label": "updatesample()",
+      "source_file": "src/main.ts",
+      "source_location": "L383"
     },
     {
-      "id": "tsconfig_compileroptions_types",
-      "label": "types",
+      "id": "src_main_initialisestudio_updatetuningcontrols",
+      "label": "updateTuningControls()",
+      "_callable": true,
       "_origin": "ast",
-      "community": 0,
+      "community": 4,
       "file_type": "code",
-      "norm_label": "types",
-      "source_file": "tsconfig.json",
-      "source_location": "L12"
+      "norm_label": "updatetuningcontrols()",
+      "source_file": "src/main.ts",
+      "source_location": "L399"
     },
     {
-      "id": "tsconfig_compileroptions_usedefineforclassfields",
-      "label": "useDefineForClassFields",
+      "id": "src_main_keylabel",
+      "label": "keyLabel()",
+      "_callable": true,
       "_origin": "ast",
-      "community": 0,
+      "community": 4,
       "file_type": "code",
-      "norm_label": "usedefineforclassfields",
-      "source_file": "tsconfig.json",
-      "source_location": "L4"
+      "norm_label": "keylabel()",
+      "source_file": "src/main.ts",
+      "source_location": "L495"
     },
     {
-      "id": "tsconfig_include",
-      "label": "include",
+      "id": "tests_app_spec_testaudiocontext_close",
+      "label": ".close()",
+      "_callable": true,
       "_origin": "ast",
-      "community": 0,
+      "community": 6,
       "file_type": "code",
-      "norm_label": "include",
-      "source_file": "tsconfig.json",
-      "source_location": "L19"
+      "norm_label": ".close()",
+      "source_file": "tests/app.spec.ts",
+      "source_location": "L127"
     },
     {
-      "id": "ref_dom",
-      "label": "DOM",
+      "id": "tests_app_spec_testaudiocontext_createanalyser",
+      "label": ".createAnalyser()",
+      "_callable": true,
       "_origin": "ast",
-      "community": 0,
-      "file_type": "concept",
-      "norm_label": "dom",
-      "source_file": "tsconfig.json",
-      "source_location": "L6"
+      "community": 6,
+      "file_type": "code",
+      "norm_label": ".createanalyser()",
+      "source_file": "tests/app.spec.ts",
+      "source_location": "L114"
     },
     {
-      "id": "ref_dom_iterable",
-      "label": "DOM.Iterable",
+      "id": "tests_app_spec_testaudiocontext_createmediastreamsource",
+      "label": ".createMediaStreamSource()",
+      "_callable": true,
       "_origin": "ast",
-      "community": 0,
-      "file_type": "concept",
-      "norm_label": "dom.iterable",
-      "source_file": "tsconfig.json",
-      "source_location": "L6"
+      "community": 6,
+      "file_type": "code",
+      "norm_label": ".createmediastreamsource()",
+      "source_file": "tests/app.spec.ts",
+      "source_location": "L113"
     },
     {
-      "id": "ref_es2022",
-      "label": "ES2022",
+      "id": "tests_app_spec_testaudiocontext_resume",
+      "label": ".resume()",
+      "_callable": true,
       "_origin": "ast",
-      "community": 0,
-      "file_type": "concept",
-      "norm_label": "es2022",
-      "source_file": "tsconfig.json",
-      "source_location": "L6"
-    },
-    {
-      "id": "ref_src",
-      "label": "src",
-      "_origin": "ast",
-      "community": 0,
-      "file_type": "concept",
-      "norm_label": "src",
-      "source_file": "tsconfig.json",
-      "source_location": "L19"
-    },
-    {
-      "id": "ref_vite_client",
-      "label": "vite/client",
-      "_origin": "ast",
-      "community": 0,
-      "file_type": "concept",
-      "norm_label": "vite/client",
-      "source_file": "tsconfig.json",
-      "source_location": "L12"
+      "community": 6,
+      "file_type": "code",
+      "norm_label": ".resume()",
+      "source_file": "tests/app.spec.ts",
+      "source_location": "L126"
     },
     {
       "id": "src_engine",
       "label": "engine.ts",
       "_origin": "ast",
-      "community": 1,
+      "community": 0,
       "file_type": "code",
       "norm_label": "engine.ts",
       "source_file": "src/engine.ts",
@@ -762,17 +632,27 @@
       "id": "src_engine_action_keys",
       "label": "ACTION_KEYS",
       "_origin": "ast",
-      "community": 1,
+      "community": 0,
       "file_type": "code",
       "norm_label": "action_keys",
       "source_file": "src/engine.ts",
       "source_location": "L49"
     },
     {
+      "id": "src_engine_actions",
+      "label": "ACTIONS",
+      "_origin": "ast",
+      "community": 0,
+      "file_type": "code",
+      "norm_label": "actions",
+      "source_file": "src/engine.ts",
+      "source_location": "L59"
+    },
+    {
       "id": "src_engine_default_calibration",
       "label": "DEFAULT_CALIBRATION",
       "_origin": "ast",
-      "community": 1,
+      "community": 0,
       "file_type": "code",
       "norm_label": "default_calibration",
       "source_file": "src/engine.ts",
@@ -782,37 +662,37 @@
       "id": "src_engine_default_mappings",
       "label": "DEFAULT_MAPPINGS",
       "_origin": "ast",
-      "community": 1,
+      "community": 0,
       "file_type": "code",
       "norm_label": "default_mappings",
       "source_file": "src/engine.ts",
       "source_location": "L41"
     },
     {
+      "id": "src_engine_gestures",
+      "label": "GESTURES",
+      "_origin": "ast",
+      "community": 0,
+      "file_type": "code",
+      "norm_label": "gestures",
+      "source_file": "src/engine.ts",
+      "source_location": "L58"
+    },
+    {
       "id": "src_engine_test",
       "label": "engine.test.ts",
       "_origin": "ast",
-      "community": 1,
+      "community": 0,
       "file_type": "code",
       "norm_label": "engine.test.ts",
       "source_file": "src/engine.test.ts",
       "source_location": "L1"
     },
     {
-      "id": "src_game",
-      "label": "game.ts",
-      "_origin": "ast",
-      "community": 1,
-      "file_type": "code",
-      "norm_label": "game.ts",
-      "source_file": "src/game.ts",
-      "source_location": "L1"
-    },
-    {
       "id": "src_main",
       "label": "main.ts",
       "_origin": "ast",
-      "community": 1,
+      "community": 0,
       "file_type": "code",
       "norm_label": "main.ts",
       "source_file": "src/main.ts",
@@ -822,17 +702,247 @@
       "id": "src_main_app",
       "label": "app",
       "_origin": "ast",
-      "community": 1,
+      "community": 0,
       "file_type": "code",
       "norm_label": "app",
       "source_file": "src/main.ts",
-      "source_location": "L20"
+      "source_location": "L23"
+    },
+    {
+      "id": "tsconfig",
+      "label": "tsconfig.json",
+      "_origin": "ast",
+      "community": 1,
+      "file_type": "code",
+      "norm_label": "tsconfig.json",
+      "source_file": "tsconfig.json",
+      "source_location": "L1"
+    },
+    {
+      "id": "tsconfig_compileroptions",
+      "label": "compilerOptions",
+      "_origin": "ast",
+      "community": 1,
+      "file_type": "code",
+      "norm_label": "compileroptions",
+      "source_file": "tsconfig.json",
+      "source_location": "L2"
+    },
+    {
+      "id": "tsconfig_compileroptions_allowimportingtsextensions",
+      "label": "allowImportingTsExtensions",
+      "_origin": "ast",
+      "community": 1,
+      "file_type": "code",
+      "norm_label": "allowimportingtsextensions",
+      "source_file": "tsconfig.json",
+      "source_location": "L9"
+    },
+    {
+      "id": "tsconfig_compileroptions_isolatedmodules",
+      "label": "isolatedModules",
+      "_origin": "ast",
+      "community": 1,
+      "file_type": "code",
+      "norm_label": "isolatedmodules",
+      "source_file": "tsconfig.json",
+      "source_location": "L10"
+    },
+    {
+      "id": "tsconfig_compileroptions_lib",
+      "label": "lib",
+      "_origin": "ast",
+      "community": 1,
+      "file_type": "code",
+      "norm_label": "lib",
+      "source_file": "tsconfig.json",
+      "source_location": "L6"
+    },
+    {
+      "id": "tsconfig_compileroptions_module",
+      "label": "module",
+      "_origin": "ast",
+      "community": 1,
+      "file_type": "code",
+      "norm_label": "module",
+      "source_file": "tsconfig.json",
+      "source_location": "L5"
+    },
+    {
+      "id": "tsconfig_compileroptions_moduledetection",
+      "label": "moduleDetection",
+      "_origin": "ast",
+      "community": 1,
+      "file_type": "code",
+      "norm_label": "moduledetection",
+      "source_file": "tsconfig.json",
+      "source_location": "L11"
+    },
+    {
+      "id": "tsconfig_compileroptions_moduleresolution",
+      "label": "moduleResolution",
+      "_origin": "ast",
+      "community": 1,
+      "file_type": "code",
+      "norm_label": "moduleresolution",
+      "source_file": "tsconfig.json",
+      "source_location": "L8"
+    },
+    {
+      "id": "tsconfig_compileroptions_noemit",
+      "label": "noEmit",
+      "_origin": "ast",
+      "community": 1,
+      "file_type": "code",
+      "norm_label": "noemit",
+      "source_file": "tsconfig.json",
+      "source_location": "L13"
+    },
+    {
+      "id": "tsconfig_compileroptions_nofallthroughcasesinswitch",
+      "label": "noFallthroughCasesInSwitch",
+      "_origin": "ast",
+      "community": 1,
+      "file_type": "code",
+      "norm_label": "nofallthroughcasesinswitch",
+      "source_file": "tsconfig.json",
+      "source_location": "L17"
+    },
+    {
+      "id": "tsconfig_compileroptions_nounusedlocals",
+      "label": "noUnusedLocals",
+      "_origin": "ast",
+      "community": 1,
+      "file_type": "code",
+      "norm_label": "nounusedlocals",
+      "source_file": "tsconfig.json",
+      "source_location": "L15"
+    },
+    {
+      "id": "tsconfig_compileroptions_nounusedparameters",
+      "label": "noUnusedParameters",
+      "_origin": "ast",
+      "community": 1,
+      "file_type": "code",
+      "norm_label": "nounusedparameters",
+      "source_file": "tsconfig.json",
+      "source_location": "L16"
+    },
+    {
+      "id": "tsconfig_compileroptions_skiplibcheck",
+      "label": "skipLibCheck",
+      "_origin": "ast",
+      "community": 1,
+      "file_type": "code",
+      "norm_label": "skiplibcheck",
+      "source_file": "tsconfig.json",
+      "source_location": "L7"
+    },
+    {
+      "id": "tsconfig_compileroptions_strict",
+      "label": "strict",
+      "_origin": "ast",
+      "community": 1,
+      "file_type": "code",
+      "norm_label": "strict",
+      "source_file": "tsconfig.json",
+      "source_location": "L14"
+    },
+    {
+      "id": "tsconfig_compileroptions_target",
+      "label": "target",
+      "_origin": "ast",
+      "community": 1,
+      "file_type": "code",
+      "norm_label": "target",
+      "source_file": "tsconfig.json",
+      "source_location": "L3"
+    },
+    {
+      "id": "tsconfig_compileroptions_types",
+      "label": "types",
+      "_origin": "ast",
+      "community": 1,
+      "file_type": "code",
+      "norm_label": "types",
+      "source_file": "tsconfig.json",
+      "source_location": "L12"
+    },
+    {
+      "id": "tsconfig_compileroptions_usedefineforclassfields",
+      "label": "useDefineForClassFields",
+      "_origin": "ast",
+      "community": 1,
+      "file_type": "code",
+      "norm_label": "usedefineforclassfields",
+      "source_file": "tsconfig.json",
+      "source_location": "L4"
+    },
+    {
+      "id": "tsconfig_include",
+      "label": "include",
+      "_origin": "ast",
+      "community": 1,
+      "file_type": "code",
+      "norm_label": "include",
+      "source_file": "tsconfig.json",
+      "source_location": "L19"
+    },
+    {
+      "id": "ref_dom",
+      "label": "DOM",
+      "_origin": "ast",
+      "community": 1,
+      "file_type": "concept",
+      "norm_label": "dom",
+      "source_file": "tsconfig.json",
+      "source_location": "L6"
+    },
+    {
+      "id": "ref_dom_iterable",
+      "label": "DOM.Iterable",
+      "_origin": "ast",
+      "community": 1,
+      "file_type": "concept",
+      "norm_label": "dom.iterable",
+      "source_file": "tsconfig.json",
+      "source_location": "L6"
+    },
+    {
+      "id": "ref_es2022",
+      "label": "ES2022",
+      "_origin": "ast",
+      "community": 1,
+      "file_type": "concept",
+      "norm_label": "es2022",
+      "source_file": "tsconfig.json",
+      "source_location": "L6"
+    },
+    {
+      "id": "ref_src",
+      "label": "src",
+      "_origin": "ast",
+      "community": 1,
+      "file_type": "concept",
+      "norm_label": "src",
+      "source_file": "tsconfig.json",
+      "source_location": "L19"
+    },
+    {
+      "id": "ref_vite_client",
+      "label": "vite/client",
+      "_origin": "ast",
+      "community": 1,
+      "file_type": "concept",
+      "norm_label": "vite/client",
+      "source_file": "tsconfig.json",
+      "source_location": "L12"
     },
     {
       "id": "package_devdependencies",
       "label": "devDependencies",
       "_origin": "ast",
-      "community": 3,
+      "community": 2,
       "file_type": "code",
       "norm_label": "devdependencies",
       "source_file": "package.json",
@@ -842,7 +952,7 @@
       "id": "package_devdependencies_axe_core_playwright",
       "label": "@axe-core/playwright",
       "_origin": "ast",
-      "community": 3,
+      "community": 2,
       "file_type": "code",
       "norm_label": "@axe-core/playwright",
       "source_file": "package.json",
@@ -852,7 +962,7 @@
       "id": "package_devdependencies_fontsource_space_grotesk",
       "label": "@fontsource/space-grotesk",
       "_origin": "ast",
-      "community": 3,
+      "community": 2,
       "file_type": "code",
       "norm_label": "@fontsource/space-grotesk",
       "source_file": "package.json",
@@ -862,7 +972,7 @@
       "id": "package_devdependencies_jsdom",
       "label": "jsdom",
       "_origin": "ast",
-      "community": 3,
+      "community": 2,
       "file_type": "code",
       "norm_label": "jsdom",
       "source_file": "package.json",
@@ -872,7 +982,7 @@
       "id": "package_devdependencies_playwright_test",
       "label": "@playwright/test",
       "_origin": "ast",
-      "community": 3,
+      "community": 2,
       "file_type": "code",
       "norm_label": "@playwright/test",
       "source_file": "package.json",
@@ -882,7 +992,7 @@
       "id": "package_devdependencies_types_node",
       "label": "@types/node",
       "_origin": "ast",
-      "community": 3,
+      "community": 2,
       "file_type": "code",
       "norm_label": "@types/node",
       "source_file": "package.json",
@@ -892,7 +1002,7 @@
       "id": "package_devdependencies_typescript",
       "label": "typescript",
       "_origin": "ast",
-      "community": 3,
+      "community": 2,
       "file_type": "code",
       "norm_label": "typescript",
       "source_file": "package.json",
@@ -902,7 +1012,7 @@
       "id": "package_devdependencies_vite",
       "label": "vite",
       "_origin": "ast",
-      "community": 3,
+      "community": 2,
       "file_type": "code",
       "norm_label": "vite",
       "source_file": "package.json",
@@ -912,7 +1022,7 @@
       "id": "package_devdependencies_vitest",
       "label": "vitest",
       "_origin": "ast",
-      "community": 3,
+      "community": 2,
       "file_type": "code",
       "norm_label": "vitest",
       "source_file": "package.json",
@@ -922,7 +1032,7 @@
       "id": "axe_core_playwright",
       "label": "@axe-core/playwright",
       "_origin": "ast",
-      "community": 3,
+      "community": 2,
       "file_type": "concept",
       "norm_label": "@axe-core/playwright",
       "source_file": "package.json",
@@ -932,7 +1042,7 @@
       "id": "fontsource_space_grotesk",
       "label": "@fontsource/space-grotesk",
       "_origin": "ast",
-      "community": 3,
+      "community": 2,
       "file_type": "concept",
       "norm_label": "@fontsource/space-grotesk",
       "source_file": "package.json",
@@ -942,7 +1052,7 @@
       "id": "jsdom",
       "label": "jsdom",
       "_origin": "ast",
-      "community": 3,
+      "community": 2,
       "file_type": "concept",
       "norm_label": "jsdom",
       "source_file": "package.json",
@@ -952,7 +1062,7 @@
       "id": "playwright_test",
       "label": "@playwright/test",
       "_origin": "ast",
-      "community": 3,
+      "community": 2,
       "file_type": "concept",
       "norm_label": "@playwright/test",
       "source_file": "package.json",
@@ -962,7 +1072,7 @@
       "id": "types_node",
       "label": "@types/node",
       "_origin": "ast",
-      "community": 3,
+      "community": 2,
       "file_type": "concept",
       "norm_label": "@types/node",
       "source_file": "package.json",
@@ -972,7 +1082,7 @@
       "id": "typescript",
       "label": "typescript",
       "_origin": "ast",
-      "community": 3,
+      "community": 2,
       "file_type": "concept",
       "norm_label": "typescript",
       "source_file": "package.json",
@@ -982,7 +1092,7 @@
       "id": "vite",
       "label": "vite",
       "_origin": "ast",
-      "community": 3,
+      "community": 2,
       "file_type": "concept",
       "norm_label": "vite",
       "source_file": "package.json",
@@ -992,17 +1102,27 @@
       "id": "vitest",
       "label": "vitest",
       "_origin": "ast",
-      "community": 3,
+      "community": 2,
       "file_type": "concept",
       "norm_label": "vitest",
       "source_file": "package.json",
       "source_location": "L22"
     },
     {
+      "id": "src_game",
+      "label": "game.ts",
+      "_origin": "ast",
+      "community": 3,
+      "file_type": "code",
+      "norm_label": "game.ts",
+      "source_file": "src/game.ts",
+      "source_location": "L1"
+    },
+    {
       "id": "package",
       "label": "package.json",
       "_origin": "ast",
-      "community": 4,
+      "community": 5,
       "file_type": "code",
       "norm_label": "package.json",
       "source_file": "package.json",
@@ -1012,7 +1132,7 @@
       "id": "package_name",
       "label": "name",
       "_origin": "ast",
-      "community": 4,
+      "community": 5,
       "file_type": "code",
       "norm_label": "name",
       "source_file": "package.json",
@@ -1022,7 +1142,7 @@
       "id": "package_private",
       "label": "private",
       "_origin": "ast",
-      "community": 4,
+      "community": 5,
       "file_type": "code",
       "norm_label": "private",
       "source_file": "package.json",
@@ -1032,7 +1152,7 @@
       "id": "package_scripts",
       "label": "scripts",
       "_origin": "ast",
-      "community": 4,
+      "community": 5,
       "file_type": "code",
       "norm_label": "scripts",
       "source_file": "package.json",
@@ -1042,7 +1162,7 @@
       "id": "package_scripts_build",
       "label": "build",
       "_origin": "ast",
-      "community": 4,
+      "community": 5,
       "file_type": "code",
       "norm_label": "build",
       "source_file": "package.json",
@@ -1052,7 +1172,7 @@
       "id": "package_scripts_dev",
       "label": "dev",
       "_origin": "ast",
-      "community": 4,
+      "community": 5,
       "file_type": "code",
       "norm_label": "dev",
       "source_file": "package.json",
@@ -1062,7 +1182,7 @@
       "id": "package_scripts_preview",
       "label": "preview",
       "_origin": "ast",
-      "community": 4,
+      "community": 5,
       "file_type": "code",
       "norm_label": "preview",
       "source_file": "package.json",
@@ -1072,7 +1192,7 @@
       "id": "package_scripts_test",
       "label": "test",
       "_origin": "ast",
-      "community": 4,
+      "community": 5,
       "file_type": "code",
       "norm_label": "test",
       "source_file": "package.json",
@@ -1082,7 +1202,7 @@
       "id": "package_scripts_test_e2e",
       "label": "test:e2e",
       "_origin": "ast",
-      "community": 4,
+      "community": 5,
       "file_type": "code",
       "norm_label": "test:e2e",
       "source_file": "package.json",
@@ -1092,7 +1212,7 @@
       "id": "package_scripts_test_unit",
       "label": "test:unit",
       "_origin": "ast",
-      "community": 4,
+      "community": 5,
       "file_type": "code",
       "norm_label": "test:unit",
       "source_file": "package.json",
@@ -1102,7 +1222,7 @@
       "id": "package_type",
       "label": "type",
       "_origin": "ast",
-      "community": 4,
+      "community": 5,
       "file_type": "code",
       "norm_label": "type",
       "source_file": "package.json",
@@ -1112,17 +1232,27 @@
       "id": "package_version",
       "label": "version",
       "_origin": "ast",
-      "community": 4,
+      "community": 5,
       "file_type": "code",
       "norm_label": "version",
       "source_file": "package.json",
       "source_location": "L3"
     },
     {
+      "id": "tests_app_spec",
+      "label": "app.spec.ts",
+      "_origin": "ast",
+      "community": 6,
+      "file_type": "code",
+      "norm_label": "app.spec.ts",
+      "source_file": "tests/app.spec.ts",
+      "source_location": "L1"
+    },
+    {
       "id": "public_sw",
       "label": "sw.js",
       "_origin": "ast",
-      "community": 6,
+      "community": 7,
       "file_type": "code",
       "norm_label": "sw.js",
       "source_file": "public/sw.js",
@@ -1132,7 +1262,7 @@
       "id": "public_sw_shell",
       "label": "SHELL",
       "_origin": "ast",
-      "community": 6,
+      "community": 7,
       "file_type": "code",
       "norm_label": "shell",
       "source_file": "public/sw.js",
@@ -1142,20 +1272,10 @@
       "id": "playwright_config",
       "label": "playwright.config.ts",
       "_origin": "ast",
-      "community": 7,
+      "community": 8,
       "file_type": "code",
       "norm_label": "playwright.config.ts",
       "source_file": "playwright.config.ts",
-      "source_location": "L1"
-    },
-    {
-      "id": "tests_app_spec",
-      "label": "app.spec.ts",
-      "_origin": "ast",
-      "community": 8,
-      "file_type": "code",
-      "norm_label": "app.spec.ts",
-      "source_file": "tests/app.spec.ts",
       "source_location": "L1"
     },
     {
@@ -1179,7 +1299,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/engine.ts",
-      "source_location": "L170",
+      "source_location": "L224",
       "weight": 1.0
     },
     {
@@ -1215,7 +1335,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/game.ts",
-      "source_location": "L84",
+      "source_location": "L92",
       "weight": 1.0
     },
     {
@@ -1227,7 +1347,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/game.ts",
-      "source_location": "L85",
+      "source_location": "L93",
       "weight": 1.0
     },
     {
@@ -1292,14 +1412,14 @@
     },
     {
       "source": "src_main_initialisestudio",
-      "target": "src_main_loadjson",
+      "target": "src_main_loadstoredjson",
       "relation": "calls",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/main.ts",
-      "source_location": "L150",
+      "source_location": "L153",
       "weight": 1.0
     },
     {
@@ -1311,7 +1431,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/main.ts",
-      "source_location": "L193",
+      "source_location": "L198",
       "weight": 1.0
     },
     {
@@ -1323,7 +1443,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/main.ts",
-      "source_location": "L213",
+      "source_location": "L218",
       "weight": 1.0
     },
     {
@@ -1335,7 +1455,19 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/main.ts",
-      "source_location": "L284",
+      "source_location": "L292",
+      "weight": 1.0
+    },
+    {
+      "source": "src_main_initialisestudio",
+      "target": "src_engine_matchesexpectedaction",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "src/main.ts",
+      "source_location": "L337",
       "weight": 1.0
     },
     {
@@ -1347,7 +1479,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/main.ts",
-      "source_location": "L357",
+      "source_location": "L369",
       "weight": 1.0
     },
     {
@@ -1359,7 +1491,19 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/main.ts",
-      "source_location": "L324",
+      "source_location": "L332",
+      "weight": 1.0
+    },
+    {
+      "source": "src_main_initialisestudio_analyse",
+      "target": "src_engine_matchesexpectedaction",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "src/main.ts",
+      "source_location": "L337",
       "weight": 1.0
     },
     {
@@ -1371,7 +1515,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/main.ts",
-      "source_location": "L328",
+      "source_location": "L340",
       "weight": 1.0
     },
     {
@@ -1383,7 +1527,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/main.ts",
-      "source_location": "L328",
+      "source_location": "L340",
       "weight": 1.0
     },
     {
@@ -1395,7 +1539,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/main.ts",
-      "source_location": "L328",
+      "source_location": "L340",
       "weight": 1.0
     },
     {
@@ -1407,7 +1551,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/main.ts",
-      "source_location": "L403",
+      "source_location": "L415",
       "weight": 1.0
     },
     {
@@ -1419,7 +1563,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/main.ts",
-      "source_location": "L404",
+      "source_location": "L416",
       "weight": 1.0
     },
     {
@@ -1431,7 +1575,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/main.ts",
-      "source_location": "L379",
+      "source_location": "L391",
       "weight": 1.0
     },
     {
@@ -1443,7 +1587,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/main.ts",
-      "source_location": "L383",
+      "source_location": "L395",
       "weight": 1.0
     },
     {
@@ -1455,7 +1599,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/main.ts",
-      "source_location": "L357",
+      "source_location": "L369",
       "weight": 1.0
     },
     {
@@ -1467,7 +1611,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/main.ts",
-      "source_location": "L361",
+      "source_location": "L373",
       "weight": 1.0
     },
     {
@@ -1479,7 +1623,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/main.ts",
-      "source_location": "L368",
+      "source_location": "L380",
       "weight": 1.0
     },
     {
@@ -1491,7 +1635,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/main.ts",
-      "source_location": "L368",
+      "source_location": "L380",
       "weight": 1.0
     },
     {
@@ -1503,7 +1647,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/main.ts",
-      "source_location": "L317",
+      "source_location": "L325",
       "weight": 1.0
     },
     {
@@ -1515,7 +1659,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/main.ts",
-      "source_location": "L318",
+      "source_location": "L326",
       "weight": 1.0
     },
     {
@@ -1527,7 +1671,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/main.ts",
-      "source_location": "L309",
+      "source_location": "L317",
       "weight": 1.0
     },
     {
@@ -1539,7 +1683,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/main.ts",
-      "source_location": "L332",
+      "source_location": "L344",
       "weight": 1.0
     },
     {
@@ -1551,7 +1695,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/main.ts",
-      "source_location": "L371",
+      "source_location": "L383",
       "weight": 1.0
     },
     {
@@ -1563,7 +1707,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/main.ts",
-      "source_location": "L376",
+      "source_location": "L388",
       "weight": 1.0
     },
     {
@@ -1575,7 +1719,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/main.ts",
-      "source_location": "L387",
+      "source_location": "L399",
       "weight": 1.0
     },
     {
@@ -1587,7 +1731,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/main.ts",
-      "source_location": "L394",
+      "source_location": "L406",
       "weight": 1.0
     },
     {
@@ -1599,7 +1743,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/main.ts",
-      "source_location": "L399",
+      "source_location": "L411",
       "weight": 1.0
     },
     {
@@ -1611,7 +1755,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/main.ts",
-      "source_location": "L407",
+      "source_location": "L419",
       "weight": 1.0
     },
     {
@@ -1623,7 +1767,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/main.ts",
-      "source_location": "L431",
+      "source_location": "L443",
       "weight": 1.0
     },
     {
@@ -1635,7 +1779,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/main.ts",
-      "source_location": "L453",
+      "source_location": "L467",
       "weight": 1.0
     },
     {
@@ -1832,7 +1976,43 @@
     },
     {
       "source": "src_engine_test",
+      "target": "src_engine_iscalibration",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "src/engine.test.ts",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "src_engine_test",
+      "target": "src_engine_ismappings",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "src/engine.test.ts",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "src_engine_test",
       "target": "src_engine_makestate",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "src/engine.test.ts",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "src_engine_test",
+      "target": "src_engine_matchesexpectedaction",
       "relation": "imports",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -1875,7 +2055,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "src/main.ts",
-      "source_location": "L18",
+      "source_location": "L21",
       "weight": 1.0
     },
     {
@@ -1964,6 +2144,30 @@
     },
     {
       "source": "src_main",
+      "target": "src_engine_iscalibration",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "src/main.ts",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "src_main",
+      "target": "src_engine_ismappings",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "src/main.ts",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "src_main",
       "target": "src_engine_makestate",
       "relation": "imports",
       "_origin": "ast",
@@ -1977,6 +2181,18 @@
     {
       "source": "src_main",
       "target": "src_engine_mapping",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "src/main.ts",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "src_main",
+      "target": "src_engine_matchesexpectedaction",
       "relation": "imports",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -2055,7 +2271,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "src/main.ts",
-      "source_location": "L18",
+      "source_location": "L21",
       "weight": 1.0
     },
     {
@@ -2080,6 +2296,18 @@
       "context": "parameter_type",
       "source_file": "src/game.ts",
       "source_location": "L65",
+      "weight": 1.0
+    },
+    {
+      "source": "src_game_ferrygame_expectedaction",
+      "target": "src_engine_actionid",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "return_type",
+      "source_file": "src/game.ts",
+      "source_location": "L72",
       "weight": 1.0
     },
     {
@@ -2326,17 +2554,6 @@
     },
     {
       "source": "src_engine",
-      "target": "src_engine_makestate",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "src/engine.ts",
-      "source_location": "L105",
-      "weight": 1.0
-    },
-    {
-      "source": "src_engine",
       "target": "src_engine_mapping",
       "relation": "contains",
       "_origin": "ast",
@@ -2348,13 +2565,57 @@
     },
     {
       "source": "src_engine",
-      "target": "src_engine_microphonepitchsource",
+      "target": "src_engine_iscalibration",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/engine.ts",
-      "source_location": "L147",
+      "source_location": "L119",
+      "weight": 1.0
+    },
+    {
+      "source": "src_engine",
+      "target": "src_engine_ismappings",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/engine.ts",
+      "source_location": "L133",
+      "weight": 1.0
+    },
+    {
+      "source": "src_engine",
+      "target": "src_engine_matchesexpectedaction",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/engine.ts",
+      "source_location": "L148",
+      "weight": 1.0
+    },
+    {
+      "source": "src_engine",
+      "target": "src_engine_median",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/engine.ts",
+      "source_location": "L152",
+      "weight": 1.0
+    },
+    {
+      "source": "src_engine",
+      "target": "src_engine_makestate",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/engine.ts",
+      "source_location": "L159",
       "weight": 1.0
     },
     {
@@ -2377,6 +2638,17 @@
       "confidence_score": 1.0,
       "source_file": "src/engine.ts",
       "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "src_engine",
+      "target": "src_engine_microphonepitchsource",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/engine.ts",
+      "source_location": "L201",
       "weight": 1.0
     },
     {
@@ -2436,7 +2708,18 @@
     },
     {
       "source": "src_engine",
-      "target": "src_engine_detectpitch",
+      "target": "src_engine_gestures",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/engine.ts",
+      "source_location": "L58",
+      "weight": 1.0
+    },
+    {
+      "source": "src_engine",
+      "target": "src_engine_actions",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -2447,13 +2730,13 @@
     },
     {
       "source": "src_engine",
-      "target": "src_engine_median",
+      "target": "src_engine_detectpitch",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/engine.ts",
-      "source_location": "L98",
+      "source_location": "L62",
       "weight": 1.0
     },
     {
@@ -2464,7 +2747,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/engine.test.ts",
-      "source_location": "L4",
+      "source_location": "L13",
       "weight": 1.0
     },
     {
@@ -2497,7 +2780,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/main.ts",
-      "source_location": "L149",
+      "source_location": "L152",
       "weight": 1.0
     },
     {
@@ -2508,7 +2791,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/main.ts",
-      "source_location": "L20",
+      "source_location": "L23",
       "weight": 1.0
     },
     {
@@ -2519,18 +2802,18 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/main.ts",
-      "source_location": "L25",
+      "source_location": "L28",
       "weight": 1.0
     },
     {
       "source": "src_main",
-      "target": "src_main_loadjson",
+      "target": "src_main_loadstoredjson",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/main.ts",
-      "source_location": "L468",
+      "source_location": "L482",
       "weight": 1.0
     },
     {
@@ -2541,7 +2824,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/main.ts",
-      "source_location": "L472",
+      "source_location": "L495",
       "weight": 1.0
     },
     {
@@ -2552,7 +2835,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/main.ts",
-      "source_location": "L476",
+      "source_location": "L499",
       "weight": 1.0
     },
     {
@@ -2563,7 +2846,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/main.ts",
-      "source_location": "L482",
+      "source_location": "L505",
       "weight": 1.0
     },
     {
@@ -2574,7 +2857,18 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/main.ts",
-      "source_location": "L447",
+      "source_location": "L459",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_app_spec",
+      "target": "tests_app_spec_testaudiocontext",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/app.spec.ts",
+      "source_location": "L111",
       "weight": 1.0
     },
     {
@@ -2772,7 +3066,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/engine.ts",
-      "source_location": "L153",
+      "source_location": "L207",
       "weight": 1.0
     },
     {
@@ -2783,7 +3077,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/engine.ts",
-      "source_location": "L167",
+      "source_location": "L221",
       "weight": 1.0
     },
     {
@@ -2794,7 +3088,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/engine.ts",
-      "source_location": "L173",
+      "source_location": "L227",
       "weight": 1.0
     },
     {
@@ -2805,7 +3099,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/game.ts",
-      "source_location": "L112",
+      "source_location": "L120",
       "weight": 1.0
     },
     {
@@ -2816,7 +3110,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/game.ts",
-      "source_location": "L119",
+      "source_location": "L127",
       "weight": 1.0
     },
     {
@@ -2909,13 +3203,24 @@
     },
     {
       "source": "src_game_ferrygame",
+      "target": "src_game_ferrygame_expectedaction",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/game.ts",
+      "source_location": "L72",
+      "weight": 1.0
+    },
+    {
+      "source": "src_game_ferrygame",
       "target": "src_game_ferrygame_loop",
       "relation": "method",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/game.ts",
-      "source_location": "L73",
+      "source_location": "L81",
       "weight": 1.0
     },
     {
@@ -2926,7 +3231,51 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/game.ts",
-      "source_location": "L89",
+      "source_location": "L97",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_app_spec_testaudiocontext",
+      "target": "tests_app_spec_testaudiocontext_createmediastreamsource",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/app.spec.ts",
+      "source_location": "L113",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_app_spec_testaudiocontext",
+      "target": "tests_app_spec_testaudiocontext_createanalyser",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/app.spec.ts",
+      "source_location": "L114",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_app_spec_testaudiocontext",
+      "target": "tests_app_spec_testaudiocontext_resume",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/app.spec.ts",
+      "source_location": "L126",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_app_spec_testaudiocontext",
+      "target": "tests_app_spec_testaudiocontext_close",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/app.spec.ts",
+      "source_location": "L127",
       "weight": 1.0
     },
     {
@@ -2938,7 +3287,7 @@
       "confidence_score": 0.8,
       "context": "call",
       "source_file": "src/main.ts",
-      "source_location": "L204",
+      "source_location": "L209",
       "weight": 1.0
     },
     {
@@ -2950,7 +3299,7 @@
       "confidence_score": 0.8,
       "context": "call",
       "source_file": "src/main.ts",
-      "source_location": "L278",
+      "source_location": "L283",
       "weight": 1.0
     },
     {
@@ -2962,7 +3311,7 @@
       "confidence_score": 0.8,
       "context": "call",
       "source_file": "src/main.ts",
-      "source_location": "L279",
+      "source_location": "L284",
       "weight": 1.0
     },
     {
@@ -2974,7 +3323,7 @@
       "confidence_score": 0.8,
       "context": "call",
       "source_file": "src/main.ts",
-      "source_location": "L281",
+      "source_location": "L286",
       "weight": 1.0
     },
     {
@@ -2986,7 +3335,7 @@
       "confidence_score": 0.8,
       "context": "call",
       "source_file": "src/main.ts",
-      "source_location": "L285",
+      "source_location": "L293",
       "weight": 1.0
     },
     {
@@ -2998,7 +3347,31 @@
       "confidence_score": 0.8,
       "context": "call",
       "source_file": "src/main.ts",
-      "source_location": "L288",
+      "source_location": "L296",
+      "weight": 1.0
+    },
+    {
+      "source": "src_main_initialisestudio",
+      "target": "src_engine_iscalibration",
+      "relation": "indirect_call",
+      "_origin": "ast",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "context": "argument",
+      "source_file": "src/main.ts",
+      "source_location": "L153",
+      "weight": 1.0
+    },
+    {
+      "source": "src_main_initialisestudio",
+      "target": "src_engine_ismappings",
+      "relation": "indirect_call",
+      "_origin": "ast",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "context": "argument",
+      "source_file": "src/main.ts",
+      "source_location": "L155",
       "weight": 1.0
     },
     {
@@ -3010,10 +3383,10 @@
       "confidence_score": 0.85,
       "context": "argument",
       "source_file": "src/main.ts",
-      "source_location": "L210",
+      "source_location": "L215",
       "weight": 1.0
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "352e2d381f4ddc6e6bc1e3e44e7dc7643fd9aee0"
+  "built_at_commit": "32c948de816b2779e5f04453b2ade1b1f7708f3f"
 }
