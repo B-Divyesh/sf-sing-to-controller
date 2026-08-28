@@ -77,7 +77,7 @@ if (legalPage) {
       </section>
 
       <section class="studio-section" id="studio" aria-labelledby="studio-title">
-        <div class="section-intro"><p class="eyebrow">Calibration studio</p><h2 id="studio-title">Three sounds. One clear contract.</h2><p>Find a quiet spot and use a comfortable “oo” or hum. Nothing is saved until you choose to keep the mapping.</p></div>
+        <div class="section-intro"><p class="eyebrow">Calibration studio</p><h2 id="studio-title">Three sounds. One clear contract.</h2><p>Find a quiet spot and use a comfortable “oo” or hum. Only your thresholds and mappings are saved in this browser.</p></div>
         <div class="studio-grid">
           <div class="listen-panel glass-panel">
             <div class="panel-heading"><div><span class="step-tag">Step 1</span><h3>Listen locally</h3></div><span class="privacy-chip">Audio stays here</span></div>
@@ -157,7 +157,7 @@ function initialiseStudio(): void {
   let voicedSince: number | null = null;
   let wasVoiced = false;
   let latestResult: PitchResult = { frequency: null, clarity: 0, rms: 0 };
-  let samplesReady = new Set<Gesture>();
+  let samplesReady = new Set<Gesture>(localStorage.getItem('sing-switch-calibration') ? ['low', 'high', 'held'] : []);
   let voicedFrames = 0;
   let recognizedFrames = 0;
   const pitchHistory: Array<number | null> = [];
@@ -183,6 +183,13 @@ function initialiseStudio(): void {
 
   renderMappings();
   updateTuningControls();
+  if (samplesReady.size === 3) {
+    updateSample('low', `${calibration.lowHz} Hz`);
+    updateSample('high', `${calibration.highHz} Hz`);
+    updateSample('held', `${calibration.holdMs} ms`);
+    byId('sample-count').textContent = '3 / 3 ready';
+    sampleStatus.textContent = 'Saved calibration loaded. You can resample any gesture.';
+  }
   emitState(makeState(latestResult, calibration, mappings, null, false).state);
   drawPitch();
 
