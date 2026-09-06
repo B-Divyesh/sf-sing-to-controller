@@ -1,38 +1,29 @@
-# Sing Switch verification handoff
+# Sing Switch review handoff
 
-## PASS
+## FAIL
 
-Candidate `32c948de816b2779e5f04453b2ade1b1f7708f3f` is **PASS** for release at
-<https://sing-to-controller.sociobot.in>. Fresh SHA-256 checks prove the live
-HTML, JavaScript, CSS, and service worker are exactly the candidate build.
+Review `sing-to-controller-review-1` found **6 findings** and **15 untested
+public-claim groups**. The reviewed implementation is
+`32c948de816b2779e5f04453b2ade1b1f7708f3f`; the report/documentation commit
+is `2c54d20fcc17b34db258615800d081c418aaf020`. The live site matches the
+implementation build byte-for-byte.
 
-## How verified
+No product code was changed. The full evidence is in
+[`.factory/review-1.md`](review-1.md).
 
-From a clean detached checkout of the candidate on 2026-08-28 UTC:
+## What was verified
 
-```sh
-npm ci
-npm test
-npm run build
-```
+From the documented clean setup, `npm ci`, `npm test`, and `npm run build`
+passed. Fresh desktop and phone browser sessions checked the live page, demo
+behavior, keyboard/focus baseline, legal routes, headers, service-worker
+update/offline recovery, and accessibility. The prior pitch, saved-setting,
+mobile target, and axe findings are resolved.
 
-Results: 18/18 unit assertions and 20 Playwright cases pass with 2 expected
-project-specific skips;
-the production TypeScript check and build pass; no lint command exists. Live
-desktop and 390px browser QA verified complete demo and deterministic microphone
-calibration, keyboard completion of the ferry game in three attempts, state
-export, local WebSocket streaming, invalid-input recovery, service-worker
-update/offline privacy reload, no console/page errors, no third-party requests,
-zero axe findings, visible keyboard focus, and reduced-motion behavior.
+## What remains
 
-Production payloads are 34,008 B JS (11,930 B gzip), 17,778 B CSS (4,830 B
-gzip), 26,072 B initial WOFF2, and 41,916 B hero WebP. Lighthouse scores on
-the live URL: 98 Performance, 100 Accessibility, 100 Best Practices, 100 SEO;
-LCP 1.3 s and CLS 0.
-
-## Known limits
-
-No defects found. Pitch detection still depends on voice and room noise as
-plainly disclosed; deterministic browser microphone testing independently
-validated the expected quiet-signal path. See `verification-2.md` for complete
-evidence, security headers, identity hashes, and test details.
+Build a real isolated demo at `/demo` with first-screen entry and a persistent
+sample label; restore the claims manifest and tagged proof for every public
+claim; add a real 404 page; repair first-screen plain words and missing route
+metadata; and complete the required demo/copy documents plus shared site
+structure. Do not mark this product PASS until those items and the untested
+claims are resolved.
