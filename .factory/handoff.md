@@ -1,4 +1,33 @@
-# Sing Switch repair handoff
+# Sing Switch verification handoff
+
+## Independent verification 3
+
+**PASS — 0 findings and 0 untested claims.** Independent verification on
+6 September 2026 reviewed implementation
+`c826ef8ba92893ac34f420ac7dc77e9fd66ce2ae` and documentation baseline
+`8dd3898193de55ff1600d74cec36f148cbf6ac5b` against the live deployment.
+
+- All 20 declared claim commands passed separately after `npm ci` in a clean
+  detached checkout.
+- `npm test` passed 18 unit and 56 browser tests, with 2 intentional skips.
+- `npm run build` passed and produced `dist/index.html`.
+- Fresh desktop and phone sessions passed the one-click populated demo,
+  persistent label, reset, real-data isolation, keyboard, focus, touch target,
+  reduced-motion, recovery, legal, metadata, link, and designed 404 checks.
+- A fresh real microphone-buffer run calibrated all three gestures, completed
+  all three game gates, and reported 92% route-action accuracy.
+- Live axe found zero violations on all route states. The factory URL verifier
+  found zero console or page errors on `/` and `/demo`.
+- Offline demo and legal routes passed after a clean service-worker update.
+- Fresh Lighthouse scored 98 Performance and 100 for Accessibility, Best
+  Practices, and SEO; LCP was 1.34 s and CLS was 0.0006.
+- Live HTML, JavaScript, CSS, service worker, and manifest hashes matched the
+  candidate build exactly.
+
+Detailed evidence and all earlier finding dispositions are in
+`.factory/verification-3.md`. Runtime artifacts are under `/work/.evidence/`.
+No product code was changed, and pre-existing Graphify working-tree changes
+remain untouched.
 
 ## Result
 
