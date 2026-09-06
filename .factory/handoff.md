@@ -6,7 +6,9 @@ All six findings in `review-1.md` and all earlier QA findings are resolved.
 The repaired product is deployed at <https://sing-to-controller.sociobot.in>.
 
 - Implementation SHA: `c826ef8ba92893ac34f420ac7dc77e9fd66ce2ae`
-- Documentation evidence SHA: recorded by the final report-only pointer commit
+- Documentation evidence SHA: `56155ddc9e1a56dda277aef9e3f4b8bf637acbed`
+  (the substantive handoff commit; the following report-only pointer commit
+  adds this identifier and does not change the deployed product)
 - Deployed artifact: production `dist/` built from the implementation SHA
 - Deployment result: Azure Static Web Apps upload succeeded; the custom domain
   returned HTTPS 200 after deployment.
