@@ -1,29 +1,119 @@
-# Sing Switch review handoff
+# Sing Switch repair handoff
 
-## FAIL
+## Result
 
-Review `sing-to-controller-review-1` found **6 findings** and **15 untested
-public-claim groups**. The reviewed implementation is
-`32c948de816b2779e5f04453b2ade1b1f7708f3f`; the report/documentation commit
-is `2c54d20fcc17b34db258615800d081c418aaf020`. The live site matches the
-implementation build byte-for-byte.
+All six findings in `review-1.md` and all earlier QA findings are resolved.
+The repaired product is deployed at <https://sing-to-controller.sociobot.in>.
 
-No product code was changed. The full evidence is in
-[`.factory/review-1.md`](review-1.md).
+- Implementation SHA: `c826ef8ba92893ac34f420ac7dc77e9fd66ce2ae`
+- Documentation evidence SHA: recorded by the final report-only pointer commit
+- Deployed artifact: production `dist/` built from the implementation SHA
+- Deployment result: Azure Static Web Apps upload succeeded; the custom domain
+  returned HTTPS 200 after deployment.
 
-## What was verified
+No backend, tenant database, billing integration, or external AI service is
+part of this static, free product.
 
-From the documented clean setup, `npm ci`, `npm test`, and `npm run build`
-passed. Fresh desktop and phone browser sessions checked the live page, demo
-behavior, keyboard/focus baseline, legal routes, headers, service-worker
-update/offline recovery, and accessibility. The prior pitch, saved-setting,
-mobile target, and axe findings are resolved.
+## What changed
 
-## What remains
+- Added `/demo` and `?demo=1` entry points with three realistic vocal gestures,
+  populated controller output, a persistent demo label, **Reset demo**, and
+  **Start for real**.
+- Isolated demo storage under `demo:sing-switch-*`. Demo entry, changes, reset,
+  and exit do not read or alter real `sing-switch-*` settings.
+- Added `.factory/claims.json` with 20 public claims and exactly one tagged,
+  outcome-based Playwright check for each claim.
+- Added a designed 404 document and Azure Static Web Apps response override.
+  Unknown public URLs now return HTTP 404 while showing a useful return path.
+- Rewrote the first screen to state the job, audience, first actions, local
+  audio handling, offline availability, and free/no-account status before
+  scrolling on 1280×720 desktop and 390×844 phone viewports.
+- Added route-specific titles, descriptions, canonicals, Open Graph and
+  Twitter metadata, a 1200×630 social image, and a 180×180 touch icon.
+- Added standalone `/privacy` and `/terms` pages, consistent navigation and
+  footer structure, version text, sitemap entries, strict response headers,
+  and a service-worker cache that covers the demo and legal routes.
+- Added `.factory/demo.md`, `.factory/copy-audit.md`, and the verb-first
+  catalog description. Updated the README and visual-system provenance.
+- Preserved and expanded pitch, action-accuracy, invalid-storage, keyboard,
+  focus, reduced-motion, mobile-target, and automated accessibility checks.
+- Removed deferred section rendering after cold screenshots showed oversized
+  blank capture regions and false empty-button results.
 
-Build a real isolated demo at `/demo` with first-screen entry and a persistent
-sample label; restore the claims manifest and tagged proof for every public
-claim; add a real 404 page; repair first-screen plain words and missing route
-metadata; and complete the required demo/copy documents plus shared site
-structure. Do not mark this product PASS until those items and the untested
-claims are resolved.
+## Finding disposition
+
+| Finding | Disposition and proof |
+| --- | --- |
+| R1 demo overwrote real storage | Fixed with separate demo keys. The `demo-isolation` test preloads real values, edits and resets the demo, exits, and compares the exact real values. The same flow passed against live HTTPS. |
+| R2 no claim manifest/tests | Fixed with 20 declared claims. Every listed command passed individually from a clean detached checkout. |
+| R3 unknown routes returned the home page | Fixed. `/final-404-check` returned HTTP 404 and the designed page passed axe. |
+| R4 first-screen audience/sample gaps | Fixed. Desktop and phone checks place the job, named audience, both first actions, and three facts above the fold. |
+| R5 missing canonical/social metadata | Fixed on `/`, `/demo`, `/privacy`, `/terms`, and the 404 document. The live social and app assets return successfully. |
+| R6 incomplete docs/site structure | Fixed with demo/copy docs, legal routes, shared header/footer, build id, and concrete legal headings. |
+| Earlier pitch subharmonics and route accuracy | Remain fixed. Deterministic 220 Hz and 330 Hz microphone buffers complete ordered calibration and score only the requested action. |
+| Earlier invalid saved data | Remain fixed. Malformed and incomplete values recover to complete defaults without a page error. |
+| Earlier mobile targets and axe landmark issue | Remain fixed. Required controls are at least 44×44 CSS pixels; all public routes have zero serious or critical axe issues and zero total axe violations in the final checks. |
+
+## Verification
+
+Clean detached checkout at the implementation SHA:
+
+```sh
+npm ci
+# Each of the 20 commands in .factory/claims.json, one by one
+npm test
+npm run build
+```
+
+Results:
+
+- `npm ci`: passed; 101 packages audited, 0 vulnerabilities.
+- Declared claim commands: 20 of 20 passed individually.
+- Unit suite: 18 passed.
+- Browser suite: 56 passed, 2 intentional duplicate-project skips. It covers
+  desktop, phone, keyboard, focus, reduced motion, errors, boundaries,
+  recovery, offline reloads, demo isolation, privacy, routes, and axe.
+- Production build: passed. Initial app assets are 38.53 KB JavaScript
+  (12.98 KB gzip), 21.50 KB CSS (5.53 KB gzip), two initial WOFF2 files
+  totaling 26.07 KB, and a 25.63 KB AVIF hero image.
+- `git diff --check`: passed before the implementation commit.
+
+Cold live checks:
+
+- `/`, `/demo`, `/privacy`, and `/terms`: HTTP 200.
+- Unknown route: deliberate HTTP 404 with the designed missing-page UI.
+- Final live CSS hash matched the deployed `dist/` artifact.
+- `verify-url.sh` on `/` and `/demo`: no console errors, one H1, `lang=en`,
+  main landmark present, no missing alt text, and no unlabeled buttons.
+- Fresh 1280×720 and 390×844 browser contexts: first-screen requirements,
+  populated sample, persistent demo label, no horizontal overflow, demo reset,
+  real-data isolation, start-for-real cleanup, and 44 px demo targets passed.
+- Live axe scan on `/`, `/demo`, `/privacy`, `/terms`, and the designed 404:
+  zero violations.
+- Live service-worker check: populated demo reload and privacy page both opened
+  after the browser was switched offline.
+- Lighthouse mobile: Performance 100, Accessibility 100, Best Practices 100,
+  SEO 100; LCP 1.3 s, CLS 0.001, total blocking time 40 ms.
+
+Evidence is under `/work/.evidence/`, including `live-root/`, `live-demo/`,
+the final phone/demo screenshots, `lighthouse-sing-switch.json`, and the copied
+`catalog-description.txt`.
+
+## Known limits
+
+- Browser automation verifies pitch detection with deterministic microphone
+  buffers. It cannot reproduce every room, microphone, echo, or voice. The UI
+  states that noisy environments can reduce pitch accuracy and keeps keyboard
+  controls available.
+- The optional WebSocket path is verified with an in-browser receiver that
+  inspects every message and confirms that no audio is sent. A visitor-provided
+  remote WebSocket remains that visitor's integration responsibility.
+- Lighthouse lab runs do not report field INP. Total blocking time was 40 ms,
+  and direct keyboard and pointer paths passed.
+- The researched offer is free and requires no account. There is no advertised
+  paid product offer, so billing registration metadata is not applicable.
+
+## Next step
+
+No required product work remains. Future acoustic field tests can add room and
+microphone profiles without changing the local-only privacy model.
