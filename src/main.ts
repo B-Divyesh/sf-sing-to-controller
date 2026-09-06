@@ -23,78 +23,130 @@ import { FerryGame } from './game';
 const app = document.querySelector<HTMLDivElement>('#app');
 if (!app) throw new Error('App root not found');
 
-const legalPage = location.pathname === '/privacy' || location.pathname === '/terms';
+const path = location.pathname.replace(/\/+$/, '') || '/';
+const isPrivacy = path === '/privacy';
+const isTerms = path === '/terms';
+const legalPage = isPrivacy || isTerms;
+const demoMode = path === '/demo' || (path === '/' && new URLSearchParams(location.search).get('demo') === '1');
+const notFoundPage = !['/', '/demo', '/privacy', '/terms'].includes(path);
+const BUILD_ID = '1.1.0';
+
+document.body.classList.toggle('demo-mode', demoMode);
+setRouteMetadata();
+
+function header(compact = false, showNetwork = false): string {
+  return `
+    <header class="site-header${compact ? ' compact' : ''}">
+      <a class="brand" href="/" aria-label="Sing Switch home"><span class="brand-wave" aria-hidden="true">∿</span> Sing Switch</a>
+      <nav aria-label="Primary">
+        <a href="/demo" ${demoMode ? 'aria-current="page"' : ''}>Demo</a>
+        <a href="/#how-it-works">How it works</a>
+        <a href="/privacy" ${isPrivacy ? 'aria-current="page"' : ''}>Privacy</a>
+      </nav>
+      ${showNetwork ? '<span class="network-state" id="network-state"><span aria-hidden="true"></span> Online</span>' : '<span class="header-spacer" aria-hidden="true"></span>'}
+    </header>`;
+}
 
 function footer(): string {
   return `
     <footer>
       <div class="footer-inner">
         <a class="brand footer-brand" href="/" aria-label="Sing Switch home"><span class="brand-wave" aria-hidden="true">∿</span> Sing Switch</a>
-        <p>Local-first vocal controls for playful experiments. No voice recordings leave your device.</p>
+        <p>Map vocal gestures to browser game controls.</p>
         <nav aria-label="Legal"><a href="/privacy">Privacy</a><a href="/terms">Terms</a></nav>
-        <p class="fine-print">The acoustic landscape is original AI-generated artwork. Built as an open, inspectable input tool.</p>
+        <p class="fine-print">Built by Param Factory · Version ${BUILD_ID} · Original generated artwork.</p>
       </div>
     </footer>`;
 }
 
-if (legalPage) {
-  const privacy = location.pathname === '/privacy';
-  document.title = `${privacy ? 'Privacy' : 'Terms'} — Sing Switch`;
+if (notFoundPage) {
+  app.innerHTML = `${header(true)}
+    <main id="main" class="not-found-shell" tabindex="-1">
+      <div>
+        <p class="eyebrow">Page not found</p>
+        <h1>This page does not exist.</h1>
+        <p class="lede">The address may be wrong, or the page may have moved.</p>
+        <a class="button primary" href="/">Return to Sing Switch</a>
+      </div>
+      <img src="/assets/sound-landscape.webp" alt="" width="1200" height="800" decoding="async">
+    </main>${footer()}`;
+} else if (legalPage) {
   app.innerHTML = `
-    <header class="site-header compact"><a class="brand" href="/"><span class="brand-wave" aria-hidden="true">∿</span> Sing Switch</a></header>
-    <main id="main" class="legal-shell">
-      <a class="back-link" href="/">← Back to the studio</a>
-      <p class="eyebrow">Plain-language ${privacy ? 'privacy' : 'terms'}</p>
-      <h1>${privacy ? 'Your voice stays here.' : 'A small tool, used fairly.'}</h1>
-      ${privacy ? `
-        <p class="lede">Sing Switch processes microphone samples in your browser. It does not upload, retain, transcribe, or identify your voice.</p>
-        <h2>What is stored</h2><p>Your pitch thresholds and action mappings are saved in local browser storage so they are ready next time. You can erase them with “Reset setup” or by clearing this site’s data.</p>
-        <h2>Microphone access</h2><p>Access begins only after you press “Allow microphone” and ends when you stop listening or close the page. Audio is analyzed in short memory buffers and never recorded.</p>
-        <h2>Connections you choose</h2><p>The optional WebSocket output connects only to the address you enter. Controller data—not audio—is sent to that address. That destination’s privacy practices are outside Sing Switch.</p>
-        <h2>Analytics and accounts</h2><p>There are no accounts, ads, tracking cookies, fingerprinting, or third-party analytics. The app works offline after its first successful load.</p>` : `
-        <p class="lede">Sing Switch is free to use for prototypes, teaching, and accessible-play experiments. It comes without a promise that pitch detection will suit every voice, room, or game.</p>
-        <h2>Use it safely</h2><p>Keep listening volume comfortable, take breaks, and always provide another input path. Do not use the tool for emergency, medical, biometric, authentication, or competitive anti-cheat purposes.</p>
-        <h2>Your integrations</h2><p>You are responsible for projects and WebSocket destinations you connect. Synthetic keyboard events are an integration aid and are not equivalent to trusted operating-system input.</p>
-        <h2>Warranty</h2><p>The software is provided “as is” under the MIT License, without warranty. Stop using it if it causes discomfort or does not recognize inputs reliably.</p>`}
-      <p class="fine-print">Effective 28 August 2026.</p>
+    ${header(true)}
+    <main id="main" class="legal-shell" tabindex="-1">
+      <a class="back-link" href="/">← Return to Sing Switch</a>
+      <p class="eyebrow">${isPrivacy ? 'Privacy' : 'Terms'}</p>
+      <h1>${isPrivacy ? 'Privacy for your voice data' : 'Terms for using Sing Switch'}</h1>
+      ${isPrivacy ? `
+        <p class="lede">Sing Switch analyzes microphone samples in your browser. It does not upload, retain, transcribe, or identify your voice.</p>
+        <h2>Data stored on this device</h2><p>Your real setup stores pitch thresholds and action mappings in local browser storage. Reset setup deletes them.</p>
+        <p>The demo uses separate keys beginning with <code>demo:</code>. Leaving the demo deletes those keys and keeps your real setup unchanged.</p>
+        <h2>Microphone access</h2><p>Access starts only after you choose Allow microphone. It ends when you stop listening or close the page.</p>
+        <p>Audio is analyzed in short memory buffers and is never recorded.</p>
+        <h2>WebSocket connections</h2><p>The optional WebSocket connects only to the address you enter. It sends controller data, not audio.</p>
+        <p>The destination you choose has its own privacy practices.</p>
+        <h2>Accounts and tracking</h2><p>There are no accounts, ads, tracking cookies, fingerprinting, or third-party analytics.</p>
+        <p>The app works offline after your first successful visit.</p>` : `
+        <p class="lede">Sing Switch is free for prototypes, teaching, and accessible-play experiments.</p>
+        <p>Pitch detection may not suit every voice, room, microphone, or game.</p>
+        <h2>Use it safely</h2><p>Keep your volume comfortable, take breaks, and always provide another input method.</p>
+        <p>Do not use Sing Switch for emergency, medical, biometric, authentication, or competitive anti-cheat purposes.</p>
+        <h2>Your integrations</h2><p>You are responsible for the projects and WebSocket destinations you connect.</p>
+        <p>Synthetic keyboard events are not trusted operating-system input.</p>
+        <h2>Warranty</h2><p>The software is provided “as is” under the MIT License, without warranty.</p>
+        <p>Stop using it if it causes discomfort or does not recognize inputs reliably.</p>`}
+      <p class="fine-print">Effective 6 September 2026.</p>
     </main>${footer()}`;
 } else {
   app.innerHTML = `
-    <header class="site-header">
-      <a class="brand" href="#top" aria-label="Sing Switch home"><span class="brand-wave" aria-hidden="true">∿</span> Sing Switch</a>
-      <nav aria-label="Primary"><a href="#studio">Studio</a><a href="#play">Test game</a><a href="#connect">Connect</a></nav>
-      <span class="network-state" id="network-state"><span aria-hidden="true"></span> Online</span>
-    </header>
-    <main id="main">
-      <section class="hero" id="top" aria-labelledby="hero-title">
-        <picture class="hero-art"><img src="/assets/sound-landscape.webp" alt="A luminous voice waveform crossing three translucent glass control gates" width="1200" height="800" fetchpriority="high" decoding="async"></picture>
+    ${header(demoMode, true)}
+    ${demoMode ? `<div class="demo-banner" role="status">
+      <div><strong>Demo — sample data, nothing is saved</strong><span>Your real setup stays unchanged.</span></div>
+      <div><button type="button" id="reset-demo">Reset demo</button><button type="button" id="start-real">Start for real</button></div>
+    </div>` : ''}
+    <main id="main" tabindex="-1">
+      ${demoMode ? `<section class="demo-intro" id="top" aria-labelledby="hero-title">
+        <div>
+          <p class="eyebrow">Sample controller</p>
+          <h1 id="hero-title">Test vocal controls with sample data</h1>
+          <p class="lede">Three gestures are ready. Preview their actions, play the game, or export the mapping.</p>
+        </div>
+        <dl class="demo-summary" aria-label="Loaded sample gestures">
+          <div><dt>Low · 180 Hz</dt><dd>Move down</dd></div>
+          <div><dt>High · 360 Hz</dt><dd>Move up</dd></div>
+          <div><dt>Held · 850 ms</dt><dd>Boost</dd></div>
+        </dl>
+      </section>` : `<section class="hero" id="top" aria-labelledby="hero-title">
+        <picture class="hero-art"><source srcset="/assets/sound-landscape.avif" type="image/avif"><source srcset="/assets/sound-landscape.webp" type="image/webp"><img src="/assets/sound-landscape.jpg" alt="A luminous voice waveform crossing three translucent glass control gates" width="1200" height="800" fetchpriority="high" decoding="async"></picture>
         <div class="hero-copy">
-          <p class="eyebrow"><span>Private by design</span> · No model training</p>
-          <h1 id="hero-title">Make your voice<br><em>a game control.</em></h1>
-          <p class="lede">Calibrate a low note, a high note, and a hold. Sing Switch turns them into visible browser controls—without recording a second of audio.</p>
-          <div class="hero-actions"><a class="button primary" href="#studio">Set up my voice <span aria-hidden="true">↓</span></a><a class="text-link" href="#play">Or try the keyboard path</a></div>
+          <p class="eyebrow">Vocal controls for browser games</p>
+          <h1 id="hero-title">Turn your voice into <em>browser game controls</em></h1>
+          <p class="lede">For game makers, music teachers, and accessible-play designers who need simple vocal controls without extra software.</p>
+          <div class="hero-actions"><a class="button primary" href="/demo">Try it with sample data</a><a class="button secondary" href="#studio">Set up my voice</a></div>
+          <p class="action-note">The sample opens with three ready gestures and populated controller output.</p>
+          <ul class="hero-facts"><li>Audio stays on this device.</li><li>Works offline after the first visit.</li><li>Free. No account.</li></ul>
         </div>
         <div class="signal-key" aria-label="How Sing Switch works">
-          <span><b>01</b> Listen locally</span><i aria-hidden="true"></i><span><b>02</b> Place gestures</span><i aria-hidden="true"></i><span><b>03</b> Play & export</span>
+          <span><b>01</b> Calibrate</span><i aria-hidden="true"></i><span><b>02</b> Map actions</span><i aria-hidden="true"></i><span><b>03</b> Test and export</span>
         </div>
-      </section>
+      </section>`}
 
       <section class="studio-section" id="studio" aria-labelledby="studio-title">
-        <div class="section-intro"><p class="eyebrow">Calibration studio</p><h2 id="studio-title">Three sounds. One clear contract.</h2><p>Find a quiet spot and use a comfortable “oo” or hum. Only your thresholds and mappings are saved in this browser.</p></div>
+        <div class="section-intro"><p class="eyebrow">Calibration</p><h2 id="studio-title">Calibrate three vocal gestures</h2><p>Use a comfortable hum in a quiet room. Sing Switch saves only your thresholds and mappings.</p></div>
         <div class="studio-grid">
           <div class="listen-panel glass-panel">
-            <div class="panel-heading"><div><span class="step-tag">Step 1</span><h3>Listen locally</h3></div><span class="privacy-chip">Audio stays here</span></div>
+            <div class="panel-heading"><div><span class="step-tag">Step 1</span><h3>Start microphone input</h3></div><span class="privacy-chip">Local audio</span></div>
             <div class="listen-visual">
               <canvas id="pitch-canvas" width="720" height="220" role="img" aria-label="Live pitch trace; the text reading below gives the same information"></canvas>
               <div class="pitch-readout"><span id="note-state">Waiting</span><strong id="pitch-value">— <small>Hz</small></strong><span id="clarity-value">No signal yet</span></div>
               <div class="level-track" aria-hidden="true"><span id="level-fill"></span></div>
             </div>
-            <div class="listen-actions"><button class="button primary" id="mic-button" type="button"><span class="mic-dot" aria-hidden="true"></span> Allow microphone</button><button class="button secondary" id="demo-button" type="button">Use demo setup</button></div>
-            <p class="status-message" id="mic-status" aria-live="polite">Microphone access starts only when you ask. Headphones can reduce feedback.</p>
+            <div class="listen-actions"><button class="button primary" id="mic-button" type="button"><span class="mic-dot" aria-hidden="true"></span> Allow microphone</button>${demoMode ? '<span class="sample-loaded">Sample data loaded</span>' : '<a class="button secondary" href="/demo">Try sample data</a>'}</div>
+            <p class="status-message" id="mic-status" aria-live="polite">Microphone access starts only when you ask.</p>
           </div>
 
           <div class="calibrate-panel">
-            <div class="panel-heading"><div><span class="step-tag">Step 2</span><h3>Place your gestures</h3></div><span class="sample-count" id="sample-count">0 / 3 ready</span></div>
+            <div class="panel-heading"><div><span class="step-tag">Step 2</span><h3>Save three thresholds</h3></div><span class="sample-count" id="sample-count">0 / 3 ready</span></div>
             <ol class="sample-list">
               <li class="sample-item" data-kind="low"><span class="sample-number">01</span><div><strong>Comfortable low</strong><span>Sing low and steady for 2 seconds.</span></div><output>Not sampled</output><button type="button" class="sample-button" data-sample="low">Sample low</button></li>
               <li class="sample-item" data-kind="high"><span class="sample-number">02</span><div><strong>Comfortable high</strong><span>Move clearly above your low note.</span></div><output>Not sampled</output><button type="button" class="sample-button" data-sample="high">Sample high</button></li>
@@ -106,7 +158,7 @@ if (legalPage) {
       </section>
 
       <section class="mapping-section" id="map" aria-labelledby="mapping-title">
-        <div class="section-intro"><p class="eyebrow">Action patchbay</p><h2 id="mapping-title">Choose what each sound does.</h2><p>The defaults fit the test game. Change any row for your own project; onset means the instant a sound begins, and silence releases held controls.</p></div>
+        <div class="section-intro"><p class="eyebrow">Gesture mapping</p><h2 id="mapping-title">Map gestures to browser actions</h2><p>The defaults fit the test game. Onset means a sound started. Silence releases active controls.</p></div>
         <div class="mapping-layout">
           <div class="mapping-table" role="group" aria-label="Vocal gesture mappings">
             <div class="mapping-head" aria-hidden="true"><span>Gesture</span><span>Browser action</span><span>Live</span></div>
@@ -117,14 +169,19 @@ if (legalPage) {
             <label for="split-range">Pitch split <output id="split-output">255 Hz</output></label><input id="split-range" type="range" min="100" max="700" value="255">
             <label for="hold-range">Hold starts after <output id="hold-output">850 ms</output></label><input id="hold-range" type="range" min="400" max="2000" step="50" value="850">
             <label for="noise-range">Room noise gate <output id="noise-output">2%</output></label><input id="noise-range" type="range" min="5" max="100" value="18">
-            <button class="text-button" type="button" id="reset-button">Reset setup</button>
+            <button class="text-button" type="button" id="reset-button">${demoMode ? 'Reset demo setup' : 'Reset setup'}</button>
           </div>
         </div>
-        <div class="test-strip" aria-labelledby="test-title"><div><span class="step-tag">Quick check</span><h3 id="test-title">Press to preview your output</h3></div><div class="test-buttons"><button type="button" data-test="low">Low</button><button type="button" data-test="high">High</button><button type="button" data-test="held">Hold</button><button type="button" data-test="onset">Onset</button></div></div>
+        <div class="test-strip" aria-labelledby="test-title"><div><span class="step-tag">Preview</span><h3 id="test-title">Preview each mapped action</h3></div><div class="test-buttons"><button type="button" data-test="low">Low</button><button type="button" data-test="high">High</button><button type="button" data-test="held">Hold</button><button type="button" data-test="onset">Onset</button></div></div>
+      </section>
+
+      <section class="how-section" id="how-it-works" aria-labelledby="how-title">
+        <p class="eyebrow">How it works</p><h2 id="how-title">Set up, test, and connect</h2>
+        <ol><li><strong>Calibrate your voice.</strong><span>Sample one low note, one high note, and one held note.</span></li><li><strong>Map each gesture.</strong><span>Choose the browser action and keyboard code for each sound.</span></li><li><strong>Test the result.</strong><span>Play the three-gate game, then export or stream controller data.</span></li></ol>
       </section>
 
       <section class="play-section" id="play" aria-labelledby="play-title">
-        <div class="section-intro"><p class="eyebrow">Accessibility test route</p><h2 id="play-title">Fly the glass ferry.</h2><p>Low moves down, high moves up, and a held note adds speed. Use <kbd>↓</kbd>, <kbd>↑</kbd>, and <kbd>Space</kbd> at any time.</p></div>
+        <div class="section-intro"><p class="eyebrow">Keyboard-accessible test</p><h2 id="play-title">Test controls in a three-gate game</h2><p>Low moves down. High moves up. A held note adds speed. You can also use <kbd>↓</kbd>, <kbd>↑</kbd>, and <kbd>Space</kbd>.</p></div>
         <div class="game-shell">
           <div class="game-toolbar"><span><i class="live-light" aria-hidden="true"></i><b id="game-live">Game ready</b></span><span id="game-progress">0 of 3 gates</span></div>
           <canvas id="game-canvas" width="640" height="360" aria-label="Glass ferry game. Guide the ferry through low, high, and hold gates using your mapped controls or keyboard."></canvas>
@@ -134,7 +191,7 @@ if (legalPage) {
       </section>
 
       <section class="connect-section" id="connect" aria-labelledby="connect-title">
-        <div class="section-intro"><p class="eyebrow">Output desk</p><h2 id="connect-title">Take the controls with you.</h2><p>Every change dispatches a <code>sing-switch</code> browser event. Export the setup, copy the live state, or stream controller JSON to a WebSocket you control.</p></div>
+        <div class="section-intro"><p class="eyebrow">Controller output</p><h2 id="connect-title">Export or send controller data</h2><p>Each change dispatches a <code>sing-switch</code> browser event. You can export the mapping or stream controller JSON.</p></div>
         <div class="connect-grid">
           <div class="state-panel glass-panel"><div class="panel-heading"><h3>Live controller state</h3><span id="output-state" class="output-badge">Idle</span></div><pre id="state-json" tabindex="0" aria-label="Live JSON controller state"></pre><div class="button-row"><button class="button primary compact-button" id="copy-state" type="button">Copy state</button><button class="button secondary compact-button" id="download-mapping" type="button">Export mapping</button></div><p class="status-message" id="copy-status" aria-live="polite"></p></div>
           <div class="socket-panel"><h3>Optional WebSocket</h3><p>Only controller data is sent—never audio. Start a local receiver, then connect.</p><label for="socket-url">WebSocket address</label><div class="socket-input"><input id="socket-url" type="url" value="ws://localhost:8765" spellcheck="false"><button class="button secondary compact-button" id="socket-button" type="button">Connect</button></div><p class="status-message" id="socket-status" aria-live="polite">Disconnected</p><details><summary>Integration contract</summary><pre><code>window.addEventListener('sing-switch', e =&gt; {
@@ -143,16 +200,18 @@ if (legalPage) {
         </div>
       </section>
 
-      <section class="limits" aria-labelledby="limits-title"><div><p class="eyebrow">Know the edges</p><h2 id="limits-title">A transparent tool, not voice AI.</h2></div><ul><li><strong>Noise matters.</strong><span>Fans, echoes, and other voices can lower accuracy. Raise the noise gate or use a headset.</span></li><li><strong>Every voice differs.</strong><span>Recalibrate after changing rooms or microphones. Use comfortable notes only.</span></li><li><strong>Keep an alternative.</strong><span>Keyboard controls always remain available; production games should preserve another input path.</span></li></ul></section>
+      <section class="limits" aria-labelledby="limits-title"><div><p class="eyebrow">Privacy and limits</p><h2 id="limits-title">What Sing Switch does not do</h2></div><ul><li><strong>No speech or identity analysis.</strong><span>It does not transcribe speech, identify voices, or train a model.</span></li><li><strong>No trusted system input.</strong><span>Browser keyboard events stay synthetic. This is not an anti-cheat tool.</span></li><li><strong>Noise can reduce accuracy.</strong><span>Use a headset or raise the noise gate. Keep another input method available.</span></li></ul></section>
     </main>${footer()}`;
 }
 
-if (!legalPage) initialiseStudio();
+if (!legalPage && !notFoundPage) initialiseStudio();
 
 function initialiseStudio(): void {
-  const storedCalibration = loadStoredJson('sing-switch-calibration', isCalibration);
+  const calibrationKey = `${demoMode ? 'demo:' : ''}sing-switch-calibration`;
+  const mappingsKey = `${demoMode ? 'demo:' : ''}sing-switch-mappings`;
+  const storedCalibration = loadStoredJson(calibrationKey, isCalibration);
   let calibration: Calibration = storedCalibration ?? { ...DEFAULT_CALIBRATION };
-  let mappings: Mapping[] = loadStoredJson('sing-switch-mappings', isMappings)
+  let mappings: Mapping[] = loadStoredJson(mappingsKey, isMappings)
     ?? DEFAULT_MAPPINGS.map((mapping) => ({ ...mapping }));
   const source = new MicrophonePitchSource();
   let listening = false;
@@ -162,7 +221,7 @@ function initialiseStudio(): void {
   let voicedSince: number | null = null;
   let wasVoiced = false;
   let latestResult: PitchResult = { frequency: null, clarity: 0, rms: 0 };
-  let samplesReady = new Set<Gesture>(storedCalibration ? ['low', 'high', 'held'] : []);
+  let samplesReady = new Set<Gesture>(storedCalibration || demoMode ? ['low', 'high', 'held'] : []);
   let evaluatedFrames = 0;
   let matchedFrames = 0;
   const pitchHistory: Array<number | null> = [];
@@ -193,10 +252,22 @@ function initialiseStudio(): void {
     updateSample('high', `${calibration.highHz} Hz`);
     updateSample('held', `${calibration.holdMs} ms`);
     byId('sample-count').textContent = '3 / 3 ready';
-    sampleStatus.textContent = 'Saved calibration loaded. You can resample any gesture.';
+    sampleStatus.textContent = demoMode ? 'Sample calibration loaded. Preview any gesture without a microphone.' : 'Saved calibration loaded. You can resample any gesture.';
   }
-  emitState(makeState(latestResult, calibration, mappings, null, false).state);
+  if (demoMode) {
+    saveSettings();
+    previewGesture('low');
+  } else {
+    emitState(makeState(latestResult, calibration, mappings, null, false).state);
+  }
   drawPitch();
+
+  document.querySelector<HTMLButtonElement>('#reset-demo')?.addEventListener('click', resetDemo);
+  document.querySelector<HTMLButtonElement>('#start-real')?.addEventListener('click', () => {
+    localStorage.removeItem('demo:sing-switch-calibration');
+    localStorage.removeItem('demo:sing-switch-mappings');
+    location.assign('/#studio');
+  });
 
   micButton.addEventListener('click', async () => {
     if (listening) {
@@ -218,18 +289,6 @@ function initialiseStudio(): void {
       micStatus.textContent = microphoneError(error);
       micButton.focus();
     }
-  });
-
-  byId<HTMLButtonElement>('demo-button').addEventListener('click', () => {
-    calibration = { ...DEFAULT_CALIBRATION };
-    samplesReady = new Set(['low', 'high', 'held']);
-    updateSample('low', `${calibration.lowHz} Hz`);
-    updateSample('high', `${calibration.highHz} Hz`);
-    updateSample('held', `${calibration.holdMs} ms`);
-    updateTuningControls();
-    saveSettings();
-    sampleStatus.textContent = 'Demo setup loaded. Use the preview buttons or keyboard path without a microphone.';
-    byId('sample-count').textContent = '3 / 3 ready';
   });
 
   document.querySelectorAll<HTMLButtonElement>('[data-sample]').forEach((button) => {
@@ -266,11 +325,15 @@ function initialiseStudio(): void {
   });
 
   byId<HTMLButtonElement>('reset-button').addEventListener('click', () => {
+    if (demoMode) {
+      resetDemo();
+      return;
+    }
     calibration = { ...DEFAULT_CALIBRATION };
     mappings = DEFAULT_MAPPINGS.map((mapping) => ({ ...mapping }));
     samplesReady.clear();
-    localStorage.removeItem('sing-switch-calibration');
-    localStorage.removeItem('sing-switch-mappings');
+    localStorage.removeItem(calibrationKey);
+    localStorage.removeItem(mappingsKey);
     document.querySelectorAll<HTMLElement>('.sample-item').forEach((item) => { item.classList.remove('is-ready'); item.querySelector('output')!.textContent = 'Not sampled'; });
     byId('sample-count').textContent = '0 / 3 ready';
     renderMappings();
@@ -320,7 +383,7 @@ function initialiseStudio(): void {
     await source.stop();
     micButton.classList.remove('is-live');
     micButton.innerHTML = '<span class="mic-dot" aria-hidden="true"></span> Allow microphone';
-    micStatus.textContent = 'Microphone stopped. Your calibration remains in this browser.';
+    micStatus.textContent = demoMode ? 'Microphone stopped. Your demo calibration remains available.' : 'Microphone stopped. Your calibration remains in this browser.';
     latestResult = { frequency: null, clarity: 0, rms: 0 };
     const output = makeState(latestResult, calibration, mappings, null, wasVoiced);
     voicedSince = output.voicedSince; wasVoiced = output.voiced; emitState(output.state);
@@ -404,8 +467,28 @@ function initialiseStudio(): void {
   }
 
   function saveSettings(): void {
-    localStorage.setItem('sing-switch-calibration', JSON.stringify(calibration));
-    localStorage.setItem('sing-switch-mappings', JSON.stringify(mappings));
+    localStorage.setItem(calibrationKey, JSON.stringify(calibration));
+    localStorage.setItem(mappingsKey, JSON.stringify(mappings));
+  }
+
+  function resetDemo(): void {
+    calibration = { ...DEFAULT_CALIBRATION };
+    mappings = DEFAULT_MAPPINGS.map((mapping) => ({ ...mapping }));
+    samplesReady = new Set(['low', 'high', 'held']);
+    document.querySelectorAll<HTMLElement>('.sample-item').forEach((item) => {
+      item.classList.remove('is-ready');
+      item.querySelector('output')!.textContent = 'Not sampled';
+    });
+    updateSample('low', `${calibration.lowHz} Hz`);
+    updateSample('high', `${calibration.highHz} Hz`);
+    updateSample('held', `${calibration.holdMs} ms`);
+    byId('sample-count').textContent = '3 / 3 ready';
+    renderMappings();
+    updateTuningControls();
+    saveSettings();
+    game.reset();
+    sampleStatus.textContent = 'Demo reset to the three sample gestures.';
+    previewGesture('low');
   }
 
   function previewGesture(gesture: Gesture): void {
@@ -504,6 +587,27 @@ function microphoneError(error: unknown): string {
 
 function isTyping(target: EventTarget | null): boolean {
   return target instanceof HTMLInputElement || target instanceof HTMLSelectElement || target instanceof HTMLTextAreaElement;
+}
+
+function setRouteMetadata(): void {
+  const metadata = notFoundPage
+    ? { title: 'Page not found — Sing Switch', description: 'Return to Sing Switch and map vocal gestures to browser game controls.', route: path }
+    : isPrivacy
+      ? { title: 'Privacy — Sing Switch', description: 'How Sing Switch handles microphone input, local settings, demo data, and optional WebSocket connections.', route: '/privacy' }
+      : isTerms
+        ? { title: 'Terms — Sing Switch', description: 'Terms for using Sing Switch for browser game controls, teaching, and accessible-play experiments.', route: '/terms' }
+        : demoMode
+          ? { title: 'Demo — Sing Switch', description: 'Try three sample vocal gestures and inspect their browser controller output without changing your real setup.', route: '/demo' }
+          : { title: 'Sing Switch — map voice to game controls', description: 'Map low, high, and held vocal gestures to browser game controls. Test with sample data or calibrate your microphone.', route: '/' };
+  document.title = metadata.title;
+  document.querySelector<HTMLMetaElement>('meta[name="description"]')?.setAttribute('content', metadata.description);
+  document.querySelector<HTMLMetaElement>('meta[property="og:title"]')?.setAttribute('content', metadata.title);
+  document.querySelector<HTMLMetaElement>('meta[property="og:description"]')?.setAttribute('content', metadata.description);
+  document.querySelector<HTMLMetaElement>('meta[name="twitter:title"]')?.setAttribute('content', metadata.title);
+  document.querySelector<HTMLMetaElement>('meta[name="twitter:description"]')?.setAttribute('content', metadata.description);
+  const canonical = `https://sing-to-controller.sociobot.in${metadata.route}`;
+  document.querySelector<HTMLLinkElement>('link[rel="canonical"]')?.setAttribute('href', canonical);
+  document.querySelector<HTMLMetaElement>('meta[property="og:url"]')?.setAttribute('content', canonical);
 }
 
 if ('serviceWorker' in navigator && import.meta.env.PROD) window.addEventListener('load', () => navigator.serviceWorker.register('/sw.js').catch(() => undefined));

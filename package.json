@@ -1,6 +1,6 @@
 {
   "name": "sing-switch",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -9,6 +9,7 @@
     "test": "vitest run && playwright test",
     "test:unit": "vitest run",
     "test:e2e": "playwright test",
+    "test:claim": "playwright test --project=chromium tests/claims.spec.ts",
     "preview": "vite preview"
   },
   "devDependencies": {

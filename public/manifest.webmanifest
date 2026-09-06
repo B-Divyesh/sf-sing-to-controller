@@ -1,7 +1,7 @@
 {
   "name": "Sing Switch",
   "short_name": "Sing Switch",
-  "description": "Local vocal gesture to browser-control mapper",
+  "description": "Map vocal gestures to browser game controls",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#07110f",

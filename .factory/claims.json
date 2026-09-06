@@ -1,0 +1,142 @@
+[
+  {
+    "id": "demo-isolation",
+    "claim": "Demo changes, reset, and exit never read or alter a real setup.",
+    "where": "demo banner, privacy page, README",
+    "test": "npm run test:claim -- --grep \"@claim:demo-isolation\"",
+    "sandbox": "fresh browser context; preseed real settings; modify and reset demo; start for real; compare exact real values"
+  },
+  {
+    "id": "demo-populated",
+    "claim": "The demo opens with three sample gestures and populated controller output.",
+    "where": "landing first screen, demo first screen",
+    "test": "npm run test:claim -- --grep \"@claim:demo-populated\"",
+    "sandbox": "fresh browser context at /demo; assert sample thresholds, mappings, ready count, and active output"
+  },
+  {
+    "id": "three-gesture-calibration",
+    "claim": "Users can calibrate low, high, and held vocal gestures.",
+    "where": "calibration UI, README",
+    "test": "npm run test:claim -- --grep \"@claim:three-gesture-calibration\"",
+    "sandbox": "fresh /demo context with deterministic 220 Hz and 330 Hz microphone buffers; complete all three samples"
+  },
+  {
+    "id": "pitch-actions",
+    "claim": "Low, high, and held gestures map to configurable browser actions.",
+    "where": "landing page, mapping UI, README",
+    "test": "npm run test:claim -- --grep \"@claim:pitch-actions\"",
+    "sandbox": "fresh /demo context; preview all three gestures, then remap low and assert changed controller output"
+  },
+  {
+    "id": "local-audio",
+    "claim": "Microphone audio is analyzed on the device and creates no upload request.",
+    "where": "landing facts, calibration UI, privacy page, README",
+    "test": "npm run test:claim -- --grep \"@claim:local-audio\"",
+    "sandbox": "fresh /demo context with deterministic microphone; record network requests during start, analysis, and stop"
+  },
+  {
+    "id": "no-voice-retention",
+    "claim": "Sing Switch does not record, retain, transcribe, identify, or train on voice audio.",
+    "where": "privacy and limits sections, README",
+    "test": "npm run test:claim -- --grep \"@claim:no-voice-retention\"",
+    "sandbox": "fresh /demo context with recorder and speech-recognition sentinels; run microphone path; inspect browser stores"
+  },
+  {
+    "id": "local-settings",
+    "claim": "A real setup stores only calibration thresholds and mappings in localStorage.",
+    "where": "calibration section, privacy page, README",
+    "test": "npm run test:claim -- --grep \"@claim:local-settings\"",
+    "sandbox": "start at /demo, leave for a clean real setup, change controls, and validate the complete localStorage contents"
+  },
+  {
+    "id": "browser-event",
+    "claim": "Controller changes dispatch a versioned sing-switch browser event.",
+    "where": "controller output section, README",
+    "test": "npm run test:claim -- --grep \"@claim:browser-event\"",
+    "sandbox": "fresh /demo context; subscribe to the public event and assert the emitted high-action detail"
+  },
+  {
+    "id": "synthetic-keyboard",
+    "claim": "Mapped actions emit synthetic keyboard events.",
+    "where": "terms page, README",
+    "test": "npm run test:claim -- --grep \"@claim:synthetic-keyboard\"",
+    "sandbox": "fresh /demo context; capture keydown while previewing high and assert ArrowUp"
+  },
+  {
+    "id": "untrusted-input",
+    "claim": "Generated keyboard events are not trusted operating-system input.",
+    "where": "terms and limits pages, README",
+    "test": "npm run test:claim -- --grep \"@claim:untrusted-input\"",
+    "sandbox": "fresh /demo context; capture the generated ArrowDown event and assert isTrusted is false"
+  },
+  {
+    "id": "json-export",
+    "claim": "The current calibration and five gesture mappings export as JSON.",
+    "where": "controller output section, README",
+    "test": "npm run test:claim -- --grep \"@claim:json-export\"",
+    "sandbox": "fresh /demo context; download and parse the file; validate product, version, calibration, and five mappings"
+  },
+  {
+    "id": "copy-state",
+    "claim": "The live controller state can be copied as JSON.",
+    "where": "controller output button",
+    "test": "npm run test:claim -- --grep \"@claim:copy-state\"",
+    "sandbox": "fresh /demo context with clipboard permission; copy, parse, and validate the current controller state"
+  },
+  {
+    "id": "websocket-json",
+    "claim": "An optional WebSocket sends controller JSON and never audio.",
+    "where": "controller output section, privacy page, README",
+    "test": "npm run test:claim -- --grep \"@claim:websocket-json\"",
+    "sandbox": "fresh /demo context with an in-browser WebSocket receiver; inspect every sent message and its exact fields"
+  },
+  {
+    "id": "keyboard-game",
+    "claim": "Keyboard controls provide an equivalent path through the test game.",
+    "where": "test game, limits section, README",
+    "test": "npm run test:claim -- --grep \"@claim:keyboard-game\"",
+    "sandbox": "fresh /demo context; use ArrowDown, ArrowUp, and Space to complete all three gates in three attempts"
+  },
+  {
+    "id": "offline-reload",
+    "claim": "Sing Switch works offline after the first visit, including the populated demo and legal pages.",
+    "where": "landing facts, privacy page, README",
+    "test": "npm run test:claim -- --grep \"@claim:offline-reload\"",
+    "sandbox": "dedicated fresh browser context at /demo; wait for service worker; go offline; reload demo, privacy, and landing routes"
+  },
+  {
+    "id": "tracking-free",
+    "claim": "Sing Switch has no accounts, ads, tracking cookies, fingerprinting, or third-party analytics.",
+    "where": "landing facts, privacy page, README",
+    "test": "npm run test:claim -- --grep \"@claim:tracking-free\"",
+    "sandbox": "fresh /demo context; record the whole sample, preview, game, and privacy flow; assert same-origin requests and no cookies"
+  },
+  {
+    "id": "free-core",
+    "claim": "The sample, test game, and JSON export are free and require no account.",
+    "where": "landing facts, terms page, README",
+    "test": "npm run test:claim -- --grep \"@claim:free-core\"",
+    "sandbox": "fresh /demo context without credentials; start the game and export the mapping without a login or checkout"
+  },
+  {
+    "id": "non-goals",
+    "claim": "Sing Switch does not provide speech recognition, voice identity, or anti-cheat input.",
+    "where": "limits section, terms page, README",
+    "test": "npm run test:claim -- --grep \"@claim:non-goals\"",
+    "sandbox": "fresh /demo context with speech API sentinels; run microphone input; inspect controller schema and API use"
+  },
+  {
+    "id": "reset-storage",
+    "claim": "Reset setup deletes saved real calibration and mappings.",
+    "where": "reset control, privacy page",
+    "test": "npm run test:claim -- --grep \"@claim:reset-storage\"",
+    "sandbox": "start at /demo, enter real mode, save a mapping, reset, and assert both real storage keys are absent"
+  },
+  {
+    "id": "microphone-control",
+    "claim": "Microphone access starts only after the user asks and stops when listening stops.",
+    "where": "calibration UI, privacy page",
+    "test": "npm run test:claim -- --grep \"@claim:microphone-control\"",
+    "sandbox": "fresh /demo context with microphone and track-stop counters; inspect before start, after start, and after stop"
+  }
+]

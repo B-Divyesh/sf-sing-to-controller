@@ -86,9 +86,15 @@ remain full width. No fixed action bar competes with device safe areas.
 
 ## Asset plan and provenance
 
-- `public/assets/sound-landscape.webp` and `.avif`: original generated abstract
+- `public/assets/sound-landscape.avif`, `.webp`, and `.jpg`: optimized versions
+  of the original generated abstract
   hero landscape. It visualizes a voice waveform crossing translucent controller
   gates; it does not imply speech recognition or a hardware product.
+- `public/assets/sing-switch-social.jpg`: a 1200×630 center crop of that same
+  original landscape for Open Graph and Twitter previews. No new model output
+  or external artwork was added.
+- `public/apple-touch-icon.png`: a 180×180 crop derived from the same original
+  landscape. The authored SVG favicon remains the primary product mark.
 - Functional icons, waveform, meter, and game graphics are authored in HTML/CSS
   or Canvas for deterministic state and crisp scaling.
 - Generation model: Azure OpenAI factory image deployment via
@@ -104,3 +110,16 @@ remain full width. No fixed action bar competes with device safe areas.
 - The exact request and output metadata are retained in
   `assets/src/sound-landscape.json`. Generated imagery is disclosed in the
   footer.
+
+## Site and demo treatment
+
+The landing first screen uses the glass landscape as depth behind a direct job
+headline, audience sentence, two first actions, and three tested facts. The
+demo removes the large landing treatment and opens on a compact populated
+controller summary. Its dark-green status rail stays visible while scrolling,
+so sample state cannot be confused with real state. The 404 page reuses the
+landscape at low opacity with a concrete missing-page heading and return action.
+
+Task headings use plain names such as “Calibrate three vocal gestures” and
+“Export or send controller data.” The glass and acoustic identity remains in
+materials, color, and geometry rather than metaphorical interface copy.
