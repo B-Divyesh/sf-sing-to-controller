@@ -3,6 +3,7 @@
     "0": [
       "src_engine",
       "src_engine_action_keys",
+      "src_engine_actionid",
       "src_engine_actions",
       "src_engine_calibration",
       "src_engine_controllerstate",
@@ -14,6 +15,8 @@
       "src_engine_iscalibration",
       "src_engine_ismappings",
       "src_engine_mapping",
+      "src_engine_matchesexpectedaction",
+      "src_engine_median",
       "src_engine_microphonepitchsource",
       "src_engine_microphonepitchsource_read",
       "src_engine_microphonepitchsource_start",
@@ -21,12 +24,13 @@
       "src_engine_pitchresult",
       "src_engine_test",
       "src_engine_test_sine",
+      "src_game",
+      "src_game_gate",
       "src_main",
       "src_main_app",
       "src_main_footer",
-      "src_main_istyping",
-      "src_main_loadstoredjson",
-      "src_main_microphoneerror"
+      "src_main_header",
+      "src_main_setroutemetadata"
     ],
     "1": [
       "ref_dom",
@@ -54,6 +58,29 @@
       "tsconfig_include"
     ],
     "2": [
+      "src_engine_makestate",
+      "src_game_ferrygame_keydown",
+      "src_game_ferrygame_keyup",
+      "src_main_initialisestudio",
+      "src_main_initialisestudio_analyse",
+      "src_main_initialisestudio_drawpitch",
+      "src_main_initialisestudio_emitstate",
+      "src_main_initialisestudio_previewgesture",
+      "src_main_initialisestudio_rendermappings",
+      "src_main_initialisestudio_resetdemo",
+      "src_main_initialisestudio_samplegesture",
+      "src_main_initialisestudio_savesettings",
+      "src_main_initialisestudio_stoplistening",
+      "src_main_initialisestudio_togglesocket",
+      "src_main_initialisestudio_updateaccuracy",
+      "src_main_initialisestudio_updatesample",
+      "src_main_initialisestudio_updatetuningcontrols",
+      "src_main_istyping",
+      "src_main_keylabel",
+      "src_main_loadstoredjson",
+      "src_main_microphoneerror"
+    ],
+    "3": [
       "axe_core_playwright",
       "fontsource_space_grotesk",
       "jsdom",
@@ -72,45 +99,7 @@
       "vite",
       "vitest"
     ],
-    "3": [
-      "src_engine_actionid",
-      "src_game",
-      "src_game_ferrygame",
-      "src_game_ferrygame_checkgate",
-      "src_game_ferrygame_constructor",
-      "src_game_ferrygame_draw",
-      "src_game_ferrygame_expectedaction",
-      "src_game_ferrygame_isrunning",
-      "src_game_ferrygame_keydown",
-      "src_game_ferrygame_keyup",
-      "src_game_ferrygame_loop",
-      "src_game_ferrygame_pause",
-      "src_game_ferrygame_reset",
-      "src_game_ferrygame_resize",
-      "src_game_ferrygame_setactions",
-      "src_game_ferrygame_start",
-      "src_game_gate"
-    ],
     "4": [
-      "src_engine_makestate",
-      "src_engine_matchesexpectedaction",
-      "src_engine_median",
-      "src_main_initialisestudio",
-      "src_main_initialisestudio_analyse",
-      "src_main_initialisestudio_drawpitch",
-      "src_main_initialisestudio_emitstate",
-      "src_main_initialisestudio_previewgesture",
-      "src_main_initialisestudio_rendermappings",
-      "src_main_initialisestudio_samplegesture",
-      "src_main_initialisestudio_savesettings",
-      "src_main_initialisestudio_stoplistening",
-      "src_main_initialisestudio_togglesocket",
-      "src_main_initialisestudio_updateaccuracy",
-      "src_main_initialisestudio_updatesample",
-      "src_main_initialisestudio_updatetuningcontrols",
-      "src_main_keylabel"
-    ],
-    "5": [
       "package",
       "package_name",
       "package_private",
@@ -119,12 +108,36 @@
       "package_scripts_dev",
       "package_scripts_preview",
       "package_scripts_test",
+      "package_scripts_test_claim",
       "package_scripts_test_e2e",
       "package_scripts_test_unit",
       "package_type",
       "package_version"
     ],
+    "5": [
+      "src_game_ferrygame",
+      "src_game_ferrygame_checkgate",
+      "src_game_ferrygame_constructor",
+      "src_game_ferrygame_draw",
+      "src_game_ferrygame_expectedaction",
+      "src_game_ferrygame_isrunning",
+      "src_game_ferrygame_loop",
+      "src_game_ferrygame_pause",
+      "src_game_ferrygame_reset",
+      "src_game_ferrygame_resize",
+      "src_game_ferrygame_setactions",
+      "src_game_ferrygame_start"
+    ],
     "6": [
+      "tests_claims_spec",
+      "tests_claims_spec_installaudiodouble",
+      "tests_claims_spec_opendemo",
+      "tests_claims_spec_testwebsocket",
+      "tests_claims_spec_testwebsocket_close",
+      "tests_claims_spec_testwebsocket_constructor",
+      "tests_claims_spec_testwebsocket_send"
+    ],
+    "7": [
       "tests_app_spec",
       "tests_app_spec_testaudiocontext",
       "tests_app_spec_testaudiocontext_close",
@@ -132,34 +145,35 @@
       "tests_app_spec_testaudiocontext_createmediastreamsource",
       "tests_app_spec_testaudiocontext_resume"
     ],
-    "7": [
+    "8": [
       "public_sw",
       "public_sw_shell"
     ],
-    "8": [
+    "9": [
       "playwright_config"
     ],
-    "9": [
+    "10": [
       "vite_config"
     ]
   },
   "cohesion": {
-    "0": 0.12923076923076923,
+    "0": 0.12183908045977011,
     "1": 0.08695652173913043,
-    "2": 0.11764705882352941,
-    "3": 0.19852941176470587,
-    "4": 0.22058823529411764,
-    "5": 0.16666666666666666,
-    "6": 0.3333333333333333,
-    "7": 1.0,
+    "2": 0.1761904761904762,
+    "3": 0.11764705882352941,
+    "4": 0.15384615384615385,
+    "5": 0.30303030303030304,
+    "6": 0.2857142857142857,
+    "7": 0.3333333333333333,
     "8": 1.0,
-    "9": 1.0
+    "9": 1.0,
+    "10": 1.0
   },
   "gods": [
     {
       "id": "src_main_initialisestudio",
       "label": "initialiseStudio()",
-      "degree": 27
+      "degree": 26
     },
     {
       "id": "tsconfig_compileroptions",
@@ -172,18 +186,23 @@
       "degree": 15
     },
     {
+      "id": "package_scripts",
+      "label": "scripts",
+      "degree": 8
+    },
+    {
       "id": "src_engine_makestate",
       "label": "makeState()",
       "degree": 7
     },
     {
-      "id": "package_scripts",
-      "label": "scripts",
-      "degree": 7
-    },
-    {
       "id": "src_main_initialisestudio_analyse",
       "label": "analyse()",
+      "degree": 6
+    },
+    {
+      "id": "src_main_initialisestudio_resetdemo",
+      "label": "resetDemo()",
       "degree": 6
     },
     {
@@ -197,13 +216,8 @@
       "degree": 5
     },
     {
-      "id": "tests_app_spec_testaudiocontext",
-      "label": "TestAudioContext",
-      "degree": 5
-    },
-    {
-      "id": "src_engine_matchesexpectedaction",
-      "label": "matchesExpectedAction()",
+      "id": "src_main_initialisestudio_samplegesture",
+      "label": "sampleGesture()",
       "degree": 5
     }
   ],
@@ -231,29 +245,29 @@
       "why": "inferred connection - not explicitly stated in source; bridges separate communities"
     },
     {
-      "source": "initialiseStudio()",
-      "target": "makeState()",
-      "source_files": [
-        "src/main.ts",
-        "src/engine.ts"
-      ],
-      "confidence": "EXTRACTED",
-      "relation": "calls",
-      "why": "cross-file semantic connection"
-    },
-    {
       "source": "analyse()",
-      "target": "makeState()",
+      "target": "matchesExpectedAction()",
       "source_files": [
         "src/main.ts",
         "src/engine.ts"
       ],
       "confidence": "EXTRACTED",
       "relation": "calls",
-      "why": "cross-file semantic connection"
+      "why": "bridges separate communities"
     },
     {
-      "source": "previewGesture()",
+      "source": "sampleGesture()",
+      "target": "median()",
+      "source_files": [
+        "src/main.ts",
+        "src/engine.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "bridges separate communities"
+    },
+    {
+      "source": "initialiseStudio()",
       "target": "makeState()",
       "source_files": [
         "src/main.ts",
