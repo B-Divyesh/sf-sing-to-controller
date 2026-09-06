@@ -172,13 +172,13 @@
       "degree": 15
     },
     {
-      "id": "package_scripts",
-      "label": "scripts",
+      "id": "src_engine_makestate",
+      "label": "makeState()",
       "degree": 7
     },
     {
-      "id": "src_engine_makestate",
-      "label": "makeState()",
+      "id": "package_scripts",
+      "label": "scripts",
       "degree": 7
     },
     {
@@ -187,23 +187,23 @@
       "degree": 6
     },
     {
+      "id": "src_engine_microphonepitchsource",
+      "label": "MicrophonePitchSource",
+      "degree": 5
+    },
+    {
       "id": "src_engine_actionid",
       "label": "ActionId",
       "degree": 5
     },
     {
+      "id": "tests_app_spec_testaudiocontext",
+      "label": "TestAudioContext",
+      "degree": 5
+    },
+    {
       "id": "src_engine_matchesexpectedaction",
       "label": "matchesExpectedAction()",
-      "degree": 5
-    },
-    {
-      "id": "src_engine_median",
-      "label": "median()",
-      "degree": 5
-    },
-    {
-      "id": "src_engine_microphonepitchsource",
-      "label": "MicrophonePitchSource",
       "degree": 5
     }
   ],
@@ -232,7 +232,7 @@
     },
     {
       "source": "initialiseStudio()",
-      "target": "matchesExpectedAction()",
+      "target": "makeState()",
       "source_files": [
         "src/main.ts",
         "src/engine.ts"
@@ -243,7 +243,7 @@
     },
     {
       "source": "analyse()",
-      "target": "matchesExpectedAction()",
+      "target": "makeState()",
       "source_files": [
         "src/main.ts",
         "src/engine.ts"
@@ -253,8 +253,8 @@
       "why": "cross-file semantic connection"
     },
     {
-      "source": "initialiseStudio()",
-      "target": "median()",
+      "source": "previewGesture()",
+      "target": "makeState()",
       "source_files": [
         "src/main.ts",
         "src/engine.ts"
