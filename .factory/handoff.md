@@ -1,5 +1,35 @@
 # Sing Switch verification handoff
 
+## Review 2
+
+**PASS — 0 findings and 0 untested claims.** Review 2 on 6 September 2026
+verified implementation `c826ef8ba92893ac34f420ac7dc77e9fd66ce2ae` against
+the live product. The documentation baseline was
+`028a0e603afa891a3bbaf3fb7e6efcce6652d48e`; the supplied later checkout only
+contains Graphify output and does not change the product.
+
+- Fresh desktop and phone sessions stated the job, audience, and sample first
+  action before scrolling. One click loaded the populated isolated demo;
+  its label remained visible, reset restored the sample, and valid seeded real
+  settings remained intact after exit.
+- Clean detached-checkout verification passed `npm ci`, all 20 separately run
+  declared claim commands, `npm test` (18 unit, 56 browser, 2 intentional
+  skips), `npm run build`, and `git diff --check`.
+- Live desktop and phone axe scans found zero violations across landing, demo,
+  legal, and designed 404 states. Routes, metadata, links, keyboard/focus,
+  reduced motion, invalid/recovery paths, privacy behavior, and phone layout
+  passed. The expected console line for the deliberate HTTP 404 is not a
+  defect.
+- A fresh controlled `sing-switch-v4` service worker reloaded demo, landing,
+  privacy, and terms pages offline after an update check.
+- Live HTML, JavaScript, CSS, service worker, and manifest hashes exactly
+  matched the fresh candidate build. Detailed evidence is in
+  `.factory/review-2.md` and `/work/.evidence/qa-report.md`.
+
+No product code changed. Pre-existing Graphify working-tree changes remain
+untouched. There is no backend, tenant database, payment path, or health/429
+surface for this static product. No required product work remains.
+
 ## Independent verification 3
 
 **PASS — 0 findings and 0 untested claims.** Independent verification on
